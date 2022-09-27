@@ -15,7 +15,7 @@ public class AccountType {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "ADMIN")
-    private Boolean admin;
+    @Column(name = "ROLE")
+    private String role;
 
 }

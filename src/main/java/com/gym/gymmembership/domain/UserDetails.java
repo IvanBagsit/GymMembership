@@ -21,7 +21,7 @@ public class UserDetails {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "USERNAME", nullable = false)
+    @Column(name = "USERNAME", nullable = false, unique = true)
     private String username;
 
     @Column(name = "PASSWORD", nullable = false)
@@ -41,12 +41,15 @@ public class UserDetails {
     @Column(name = "BIRTHDAY")
     private Date birthday;
 
+    @Nullable
     @Column(name = "LAST_LOGIN")
     private Date lastLogIn;
 
+    @Nullable
     @Column(name = "LAST_LOGOUT")
     private Date lastLogOut;
 
+    @Nullable
     @Column(name = "EXPIRATION_DATE")
     private Date expirationDate;
 
@@ -61,12 +64,12 @@ public class UserDetails {
     private Boolean disable;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "MEMBERSHIPTYPE_ID_FK")
+    @JoinColumn(name = "MEMBERSHIPTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private MembershipType membershipType;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "ACCOUNTTYPE_ID_FK")
+    @JoinColumn(name = "ACCOUNTTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private AccountType accountType;
 
