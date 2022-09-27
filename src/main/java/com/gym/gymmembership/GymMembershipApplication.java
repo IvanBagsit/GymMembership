@@ -1,4 +1,4 @@
-package com.gym.GymMembership;
+package com.gym.gymmembership;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
