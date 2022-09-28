@@ -9,4 +9,4 @@ spring:
     username: root
     password: Pandesal123
     url: jdbc:mysql://localhost/gymmembership
-    driverClassName: com.mysql.jdbc.Driver
+    driverClassName: com.mysql.cj.jdbc.Driver

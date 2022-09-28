@@ -1,12 +1,14 @@
 package com.gym.gymmembership.service.impl;
 
 import com.gym.gymmembership.domain.MembershipType;
+import com.gym.gymmembership.dto.MembershipTypeDTO;
 import com.gym.gymmembership.repository.MembershipTypeRepository;
 import com.gym.gymmembership.service.MembershipTypeService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -17,31 +19,64 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
     private final MembershipTypeRepository membershipTypeRepository;
 
     @Override
-    public MembershipType addMembershipPlan(MembershipType membershipType) {
-        membershipTypeRepository.save(membershipType);
-        log.info("Successfully added: {} in the database", membershipType);
-        return membershipType;
+    public List<MembershipType> fetchAllMembershipPlan() {
+        return membershipTypeRepository.findAll();
     }
 
     @Override
-    public void updateMembershipPlan(MembershipType membershipType) {
-        Optional<MembershipType> membership = membershipTypeRepository.findById(membershipType.getId());
-        if(membership.isPresent()) {
+    public MembershipTypeDTO addMembershipPlan(MembershipTypeDTO membershipTypeDTO) {
+        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
+                membershipTypeDTO.getType(),
+                membershipTypeDTO.getFee(),
+                membershipTypeDTO.getDuration()
+        );
+        if(membership.isPresent()){
+            throw new IllegalArgumentException("Membership Plan already available in the database");
+        }
+        else {
+            MembershipType membershipType = new MembershipType();
+            membershipType.setType(membershipTypeDTO.getType());
+            membershipType.setFee(membershipTypeDTO.getFee());
+            membershipType.setDuration(membershipTypeDTO.getDuration());
+
             membershipTypeRepository.save(membershipType);
-            log.info("Successfully updated: {}", membershipType);
+            log.info("Successfully added: {} in the database", membershipTypeDTO.getType());
+            return membershipTypeDTO;
         }
-        else { log.error("Can't find membership: {} in the database to be updated", membershipType); }
     }
 
     @Override
-    public void deleteMembershipPlan(MembershipType membershipType) {
-        Optional<MembershipType> membership = membershipTypeRepository.findById(membershipType.getId());
-        if(membership.isPresent()) {
-            membershipTypeRepository.deleteById(membershipType.getId());
-            log.info("Successfully deleted: {}", membershipType);
+    public MembershipTypeDTO updateMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception {
+        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
+                membershipTypeDTO.getType(),
+                membershipTypeDTO.getFee(),
+                membershipTypeDTO.getDuration()
+        );
+        if (membership.isPresent()) {
+            membership.get().setType(membershipTypeDTO.getType());
+            membership.get().setFee(membershipTypeDTO.getFee());
+            membership.get().setDuration(membershipTypeDTO.getDuration());
+            membershipTypeRepository.save(membership.get());
+            log.info("Successfully updated: {}", membership.get().getType());
+            return membershipTypeDTO;
+        } else {
+            throw new Exception("Can't find membership plan: " + membershipTypeDTO.getType() + " in the database to be updated");
         }
-        else { log.error("Can't find membership: {} in the database to be deleted", membershipType); }
     }
 
+    @Override
+    public MembershipTypeDTO deleteMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception {
+        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
+                membershipTypeDTO.getType(),
+                membershipTypeDTO.getFee(),
+                membershipTypeDTO.getDuration()
+        );
+        if(membership.isPresent()) {
+            membershipTypeRepository.deleteByType(membershipTypeDTO.getType());
+            log.info("Successfully deleted: {}", membershipTypeDTO.getType());
+            return membershipTypeDTO;
+        }
+        else { throw new Exception("Can't find membership plan: " + membershipTypeDTO.getType() + " in the database to be deleted"); }
+    }
 
 }

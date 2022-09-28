@@ -25,6 +25,7 @@ public class UserDetailsDTO {
     private Integer fee;
     private String duration;
     private Date expirationDate;
+    private Boolean disable;
 
     @Nullable
     private Integer age;

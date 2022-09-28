@@ -49,14 +49,8 @@ c
 3src/main/webapp/app/src/environments/environment.ts,0\1\01d9c301f10be0ea14c24c71a20cb177edf51965
 U
 %src/main/webapp/app/package-lock.json,0\d\0d695c8265b2f1266599375c9cbf7c7aa681c371
-s
-Csrc/main/java/com/gym/gymmembership/service/AccountTypeService.java,e\7\e7361b425ca43192514ce1a6c07d8d994d69c11b
-|
-Lsrc/main/java/com/gym/gymmembership/service/impl/AccountTypeServiceImpl.java,b\0\b0fd5ca9cacab67a257712931b54c5cca2535c3e
 ^
 .src/main/webapp/app/src/app/app.component.html,b\d\bdb7a69501e7418d8383d31845dc9598035bf0b2
-q
-Asrc/main/java/com/gym/gymmembership/GymMembershipApplication.java,4\7\4710f8917b90ec90d2d8e4f3fd0a2c7b0ffad177
 v
 Fsrc/test/java/com/gym/gymmembership/GymMembershipApplicationTests.java,5\f\5f64b4421aac7c8b1bf5aebefd211832dbf46ec7
 R
@@ -65,5 +59,11 @@ J
 src/main/webapp/index.html,1\3\1337d72a3b1928dba82aa5210f5cdc0e88ce895b
 M
 src/main/webapp/app/README.md,c\4\c4d08d7d7577453f11f5ac936e07e29c2267c0de
-y
-Isrc/main/java/com/gym/gymmembership/repository/UserDetailsRepository.java,c\6\c6bb6f2ab01671100b86959af0df794fe143f069
+7
+pom.xml,4\4\442292b8a7efeabbe4cc176709b833b1792140ec
+k
+;src/main/java/com/gym/gymmembership/domain/UserDetails.java,9\b\9b5c66176c726b4a17c579fa3262a4ddb6e8244b
+n
+>src/main/java/com/gym/gymmembership/domain/MembershipType.java,5\a\5a6be101b38503458976a568df51825a6195ac61
+q
+Asrc/main/java/com/gym/gymmembership/GymMembershipApplication.java,4\7\4710f8917b90ec90d2d8e4f3fd0a2c7b0ffad177

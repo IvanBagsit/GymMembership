@@ -10,6 +10,7 @@ import com.gym.gymmembership.repository.UserDetailsRepository;
 import com.gym.gymmembership.service.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,7 +32,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public UserDetails addUser(UserDetailsDTO userDetailsDTO) throws Exception {
+    public UserDetailsDTO addUser(UserDetailsDTO userDetailsDTO) throws Exception {
 
         UserDetails userDetails = new UserDetails();
         Optional<AccountType> role = accountTypeRepository.findByRole(userDetailsDTO.getAccountType());
@@ -57,8 +58,8 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails.setTermsAndCondition(userDetailsDTO.getTermsAndCondition());
 
             userDetailsRepository.save(userDetails);
-            log.info("Successfully added User: {} in the database", userDetails.getUsername());
-            return userDetails;
+            log.info("Successfully added User: {} in the database", userDetailsDTO.getUsername());
+            return userDetailsDTO;
         }
         else {
             throw new Exception("Failed to save User: " + userDetailsDTO.getUsername());
@@ -67,23 +68,26 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
 
     @Override
-    public void updateUser(UserDetails userDetails) {
-        Optional<UserDetails> user = userDetailsRepository.findById(userDetails.getId());
-        if(user.isPresent()) {
-            userDetailsRepository.save(userDetails);
-            log.info("Successfully updated User: {}", userDetails);
+    public UserDetailsDTO updateUser(UserDetailsDTO userDetailsDTO) throws Exception {
+        Optional<UserDetails> user = userDetailsRepository.findByUsername(userDetailsDTO.getUsername());
+        Optional<MembershipType> membershipType = membershipTypeRepository.findByTypeAndFeeAndDuration(
+                userDetailsDTO.getType(),
+                userDetailsDTO.getFee(),
+                userDetailsDTO.getDuration()
+        );
+
+        if(user.isPresent() && membershipType.isPresent()) {
+            user.get().setUsername(userDetailsDTO.getUsername());
+            user.get().setPassword(userDetailsDTO.getPassword());
+            user.get().setFirstName(userDetailsDTO.getFirstName());
+            user.get().setLastName(userDetailsDTO.getLastName());
+            user.get().setMembershipType(membershipType.get());
+            user.get().setDisable(userDetailsDTO.getDisable());
+            userDetailsRepository.save(user.get());
+            log.info("Successfully updated User: {}", user.get().getUsername());
+            return userDetailsDTO;
         }
-        else { log.error("Can't find user: {} in the database to be updated", userDetails.getUsername()); }
+        else { throw new Exception("Failed to update User: " + userDetailsDTO.getUsername()); }
     }
 
-    @Override
-    public void disableUser(UserDetails userDetails) {
-        Optional<UserDetails> user = userDetailsRepository.findById(userDetails.getId());
-        if(user.isPresent()) {
-            userDetails.setDisable(true);
-            userDetailsRepository.save(userDetails);
-            log.info("Successfully disabled user: {}",userDetails.getUsername());
-        }
-        else { log.error("Can't find user: {} in the database to be disabled", userDetails.getUsername()); }
-    }
 }

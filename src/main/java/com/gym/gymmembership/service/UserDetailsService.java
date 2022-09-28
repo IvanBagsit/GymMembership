@@ -7,7 +7,6 @@ import java.util.List;
 
 public interface UserDetailsService {
     List<UserDetails> fetchAllUserDetails();
-    UserDetails addUser(UserDetailsDTO userDetailsDTO) throws Exception;
-    void updateUser(UserDetails userDetails);
-    void disableUser(UserDetails userDetails);
+    UserDetailsDTO addUser(UserDetailsDTO userDetailsDTO) throws Exception;
+    UserDetailsDTO updateUser(UserDetailsDTO userDetailsDTO) throws Exception;
 }
