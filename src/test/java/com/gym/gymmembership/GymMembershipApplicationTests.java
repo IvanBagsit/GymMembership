@@ -1,4 +1,4 @@
-package com.gym.GymMembership;
+package com.gym.gymmembership;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
