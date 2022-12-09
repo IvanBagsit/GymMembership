@@ -10,3 +10,8 @@ spring:
     password: Pandesal123
     url: jdbc:mysql://localhost/gymmembership
     driverClassName: com.mysql.cj.jdbc.Driver
+
+server:
+  port: 8080
+  servlet:
+    context-path: /gymmembership

@@ -20,6 +20,7 @@ public class UserDetailsController {
 
     private final UserDetailsService userDetailsService;
 
+//    @CrossOrigin(origins = "*", maxAge = 3600)
     @GetMapping("/details")
     @ApiOperation(value = "Get User Details")
     public ResponseEntity<List<UserDetails>> getAllUserDetails(){
