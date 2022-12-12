@@ -13,6 +13,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,7 +29,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     private final AccountTypeRepository accountTypeRepository;
     private final MembershipTypeRepository membershipTypeRepository;
 
-
     @Override
     public List<UserDetails> fetchAllUserDetails() {
         return userDetailsRepository.findAll();
@@ -33,16 +36,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetailsDTO addUser(UserDetailsDTO userDetailsDTO) throws Exception {
-
         UserDetails userDetails = new UserDetails();
-        Optional<AccountType> role = accountTypeRepository.findByRole(userDetailsDTO.getAccountType());
+        Optional<AccountType> role = accountTypeRepository.findByRole(userDetailsDTO.getAccountType().getRole());
         Optional<MembershipType> membershipType = membershipTypeRepository.findByTypeAndFeeAndDuration(
-                userDetailsDTO.getType(),
-                userDetailsDTO.getFee(),
-                userDetailsDTO.getDuration()
+                userDetailsDTO.getMembershipType().getType(),
+                userDetailsDTO.getMembershipType().getFee(),
+                userDetailsDTO.getMembershipType().getDuration()
         );
 
         if (role.isPresent() && membershipType.isPresent()) {
+            log.info("found role and membership type: {} - {}", role, membershipType);
             userDetails.setUsername(userDetailsDTO.getUsername());
             userDetails.setPassword(userDetailsDTO.getPassword());
             userDetails.setFirstName(userDetailsDTO.getFirstName());
@@ -56,12 +59,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails.setLastLogIn(null);
             userDetails.setLastLogOut(null);
             userDetails.setTermsAndCondition(userDetailsDTO.getTermsAndCondition());
+            userDetails.setJoinDate(Date.from(LocalDateTime.now().atZone(ZoneId.of("Asia/Manila")).toInstant()));
 
             userDetailsRepository.save(userDetails);
             log.info("Successfully added User: {} in the database", userDetailsDTO.getUsername());
             return userDetailsDTO;
         }
         else {
+            log.info("Failed to save user : {}", userDetailsDTO);
             throw new Exception("Failed to save User: " + userDetailsDTO.getUsername());
         }
 
@@ -69,14 +74,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetailsDTO updateUser(UserDetailsDTO userDetailsDTO) throws Exception {
-        Optional<UserDetails> user = userDetailsRepository.findByUsername(userDetailsDTO.getUsername());
+        Optional<UserDetails> user = userDetailsRepository.findById(userDetailsDTO.getId());
         Optional<MembershipType> membershipType = membershipTypeRepository.findByTypeAndFeeAndDuration(
-                userDetailsDTO.getType(),
-                userDetailsDTO.getFee(),
-                userDetailsDTO.getDuration()
+                userDetailsDTO.getMembershipType().getType(),
+                userDetailsDTO.getMembershipType().getFee(),
+                userDetailsDTO.getMembershipType().getDuration()
         );
+        log.info("{} - {}", user, membershipType);
 
         if(user.isPresent() && membershipType.isPresent()) {
+            log.info("found user to be updated: {} - {}", user, membershipType);
             user.get().setUsername(userDetailsDTO.getUsername());
             user.get().setPassword(userDetailsDTO.getPassword());
             user.get().setFirstName(userDetailsDTO.getFirstName());
@@ -87,7 +94,9 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             log.info("Successfully updated User: {}", user.get().getUsername());
             return userDetailsDTO;
         }
-        else { throw new Exception("Failed to update User: " + userDetailsDTO.getUsername()); }
+        else {
+            log.info("Failed to update user : {}", userDetailsDTO);
+            throw new Exception("Failed to update User: " + userDetailsDTO.getUsername()); }
     }
 
 }

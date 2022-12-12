@@ -15,11 +15,13 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDetailsDTO {
 
+    private Long id;
     private String username;
     private String password;
     private String firstName;
     private String lastName;
-    private String accountType;
+    private AccountType accountType;
+    private MembershipType membershipType;
     private Boolean termsAndCondition;
     private String type;
     private Integer fee;

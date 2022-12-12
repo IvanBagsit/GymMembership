@@ -25,12 +25,12 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
 
     @Override
     public MembershipTypeDTO addMembershipPlan(MembershipTypeDTO membershipTypeDTO) {
-        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
+        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndDuration(
                 membershipTypeDTO.getType(),
-                membershipTypeDTO.getFee(),
                 membershipTypeDTO.getDuration()
         );
         if(membership.isPresent()){
+            log.info("Error adding membership plan : {}", membershipTypeDTO);
             throw new IllegalArgumentException("Membership Plan already available in the database");
         }
         else {
@@ -47,12 +47,13 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
 
     @Override
     public MembershipTypeDTO updateMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception {
-        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
+        Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndDuration(
                 membershipTypeDTO.getType(),
-                membershipTypeDTO.getFee(),
                 membershipTypeDTO.getDuration()
         );
+
         if (membership.isPresent()) {
+            log.info("found membership Type : {}", membership.get());
             membership.get().setType(membershipTypeDTO.getType());
             membership.get().setFee(membershipTypeDTO.getFee());
             membership.get().setDuration(membershipTypeDTO.getDuration());
@@ -60,23 +61,27 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
             log.info("Successfully updated: {}", membership.get().getType());
             return membershipTypeDTO;
         } else {
+            log.info("Error updating membership plan : {}", membershipTypeDTO);
             throw new Exception("Can't find membership plan: " + membershipTypeDTO.getType() + " in the database to be updated");
         }
     }
 
     @Override
-    public MembershipTypeDTO deleteMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception {
+    public String deleteMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception {
         Optional<MembershipType> membership = membershipTypeRepository.findByTypeAndFeeAndDuration(
                 membershipTypeDTO.getType(),
                 membershipTypeDTO.getFee(),
                 membershipTypeDTO.getDuration()
         );
         if(membership.isPresent()) {
+            log.info("found membership Type : {}", membership.get());
             membershipTypeRepository.deleteByType(membershipTypeDTO.getType());
             log.info("Successfully deleted: {}", membershipTypeDTO.getType());
-            return membershipTypeDTO;
+            return "Successfully deleted: " + membershipTypeDTO;
         }
-        else { throw new Exception("Can't find membership plan: " + membershipTypeDTO.getType() + " in the database to be deleted"); }
+        else {
+            log.info("Error deleting membership plan : {}", membershipTypeDTO);
+            throw new Exception("Can't find membership plan: " + membershipTypeDTO.getType() + " in the database to be deleted"); }
     }
 
 }

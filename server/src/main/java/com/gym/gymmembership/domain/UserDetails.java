@@ -60,6 +60,7 @@ public class UserDetails {
     @Column(name = "TERMS_AND_CONDITION")
     private Boolean termsAndCondition;
 
+    @Nullable
     @Column(name = "DISABLE")
     private Boolean disable;
 
@@ -72,9 +73,5 @@ public class UserDetails {
     @JoinColumn(name = "ACCOUNTTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private AccountType accountType;
-
-    public String getFullName(){
-        return this.firstName + " " + this.lastName;
-    }
 
 }
