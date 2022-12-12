@@ -9,5 +9,5 @@ public interface MembershipTypeService {
     List<MembershipType> fetchAllMembershipPlan();
     MembershipTypeDTO addMembershipPlan(MembershipTypeDTO membershipTypeDTO);
     MembershipTypeDTO updateMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception;
-    MembershipTypeDTO deleteMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception;
+    String deleteMembershipPlan(MembershipTypeDTO membershipTypeDTO) throws Exception;
 }

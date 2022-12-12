@@ -62,9 +62,9 @@ public class MembershipTypeController {
 
     @DeleteMapping("/delete")
     @ApiOperation("Delete a Membership Plan")
-    public ResponseEntity<MembershipTypeDTO> deleteMembershipPlan(@RequestBody MembershipTypeDTO membershipTypeDTO) {
+    public ResponseEntity<String> deleteMembershipPlan(@RequestBody MembershipTypeDTO membershipTypeDTO) {
         log.info("Start to delete a membership plan");
-        ResponseEntity<MembershipTypeDTO> response;
+        ResponseEntity<String> response;
         try {
             response = ResponseEntity.ok(membershipTypeService.deleteMembershipPlan(membershipTypeDTO));
         } catch (Exception e){
