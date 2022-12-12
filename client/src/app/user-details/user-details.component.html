@@ -1,0 +1,5 @@
+<p>user-details works!</p>
+<ul *ngFor="let userDetail of userDetails">
+    <li>{{userDetail.id}} {{userDetail.firstName}} {{userDetail.lastName}} {{userDetail.age}}
+        {{userDetail.accountType.role}} {{userDetail.membershipType.type}} {{userDetail.lastLogIn}}</li>
+</ul>
