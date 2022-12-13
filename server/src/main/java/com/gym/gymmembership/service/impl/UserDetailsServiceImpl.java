@@ -80,7 +80,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getFee(),
                 userDetailsDTO.getMembershipType().getDuration()
         );
-        log.info("{} - {}", user, membershipType);
 
         if(user.isPresent() && membershipType.isPresent()) {
             log.info("found user to be updated: {} - {}", user, membershipType);
