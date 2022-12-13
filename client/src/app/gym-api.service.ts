@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Head, Observable } from 'rxjs';
 import { throws } from 'assert';
 import { IMembershipType } from './model/membership-type';
 import { IUserDetails } from './model/user-details';
@@ -21,6 +21,17 @@ export class GymApiService {
 
   retrieveUserDetails(): Observable<IUserDetails[]>{
     return this.http.get<IUserDetails[]>(this.LOCAL_API_PATH + '/users/details');
+  }
+
+  retrieveConfig(name: string): Observable<string> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'text/plain, */*',
+        'Content-Type': 'application/json' // We send JSON
+      }),
+      responseType: 'text' as 'json' // We accept plain text as response
+    };
+    return this.http.get<string>(this.LOCAL_API_PATH + '/config/retrieve/' + name, httpOptions);
   }
 
 }

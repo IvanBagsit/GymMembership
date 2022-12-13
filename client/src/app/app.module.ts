@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { GymApiService } from './gym-api.service';
 import { MembershipDetailsComponent } from './membership-details/membership-details.component';
 import { UserDetailsComponent } from './user-details/user-details.component';
+import { FrontEndComponent } from './front-end/front-end.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MembershipDetailsComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    FrontEndComponent
   ],
   imports: [
     BrowserModule,
