@@ -1,4 +1,13 @@
-<p>membership-details works!</p>
-<ul *ngFor="let membership of membershipType">
-    <li>{{membership.id}} {{membership.type}} {{membership.fee}} {{membership.duration}}</li>
-</ul>
+<h1>Available Membership Plans</h1>
+<table>
+    <tr>
+        <th>Type</th>
+        <th>Duration(days)</th>
+        <th>Fee</th>
+    </tr>
+    <tr *ngFor="let membership of membershipType">
+        <th>{{membership.type}}</th>
+        <th>{{membership.duration}}</th>
+        <th>{{membership.fee | currency: 'PHP'}}</th>
+    </tr>
+</table>

@@ -1,2 +1,12 @@
-<p>front-end works!</p>
-<h1>{{title.toUpperCase()}}</h1>
+<h1>
+    <a routerLink="/home" routerLinkActive="active">Welcome to {{title.toUpperCase()}}!</a>
+</h1>
+<div>
+    <nav>
+        <!-- routerLinkActive is the CSS of router -->
+        <a routerLink="/user-details" routerLinkActive="active">User Details</a>
+        <a routerLink="/membership-details" routerLinkActive="active">Membership Plans</a>
+        <a routerLink="/home" routerLinkActive="active">Home</a>
+        <span>Account</span>
+    </nav>
+</div>
