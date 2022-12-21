@@ -1,4 +1,4 @@
 export interface IAccountType{
-    id: number;
-    role: string;
+    id?: number;
+    role?: string;
 }

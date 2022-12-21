@@ -1,5 +1,47 @@
-<p>user-details works!</p>
-<ul *ngFor="let userDetail of userDetails">
-    <li>{{userDetail.id}} {{userDetail.firstName}} {{userDetail.lastName}} {{userDetail.age}}
-        {{userDetail.accountType.role}} {{userDetail.membershipType.type}} {{userDetail.lastLogIn}}</li>
-</ul>
+<h1>User Details</h1>
+<div>
+    <div>Filter Members</div>
+    <div>
+        <div>
+            Date Joined
+            <div>
+                <label for="dateFrom">From:</label>
+                <input type="date" id="dateFrom" name="dateFrom">
+                <label for="dateTo">To:</label>
+                <input type="date" id="dateTo" name="dateTo">
+            </div>
+        </div>
+        <div>
+            Membership Type
+            <div>
+                <label for="membershipType"></label>
+                <select  id="membershipTypes" name="membershipTypes">
+                    <option *ngFor="let membershipTypes of membershipType">{{membershipTypes.type}}</option>
+                </select>
+            </div>
+        </div>
+    </div>
+</div>
+<div>
+    <span>Search:</span>
+    <input type="search">
+    <button>Search</button>
+</div>
+<table>
+    <tr>
+        <th>Gym ID</th>
+        <th>First Name</th>
+        <th>Last Name</th>
+        <th>Membership Type</th>
+        <th>Last Login</th>
+        <th>Last Logout</th>
+    </tr>
+    <tr *ngFor="let userDetail of userDetails;">
+        <th>{{userDetail.id}}</th>
+        <th>{{userDetail.firstName}}</th>
+        <th>{{userDetail.lastName}}</th>
+        <th>{{userDetail.membershipType.type}}</th>
+        <th>{{userDetail.lastLogIn | date: 'medium'}}</th>
+        <th>{{userDetail.lastLogOut | date: 'medium'}}</th>
+    </tr>
+</table>
