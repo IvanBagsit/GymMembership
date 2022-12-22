@@ -9,6 +9,7 @@ import { GymApiService } from '../gym-api.service';
 export class FrontEndComponent implements OnInit {
 
   public title : string = "";
+  public isAccountClicked : boolean = false;
 
   constructor(protected gymApiService: GymApiService) { }
 
@@ -19,5 +20,17 @@ export class FrontEndComponent implements OnInit {
   retrieveConfig(name: string){
     this.gymApiService.retrieveConfig(name).subscribe(config => this.title = config);
   }
+
+  onClick(){
+    if(this.isAccountClicked === false){
+      this.isAccountClicked = true;
+    }
+    else{
+      this.isAccountClicked = false;
+    }
+    console.log(this.isAccountClicked);
+  }
+
+
 
 }

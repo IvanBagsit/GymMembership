@@ -1,12 +1,24 @@
-<h1>
-    <a routerLink="/home" routerLinkActive="active">Welcome to {{title.toUpperCase()}}!</a>
-</h1>
-<div>
-    <nav>
-        <!-- routerLinkActive is the CSS of router -->
-        <a routerLink="/user-details" routerLinkActive="active">User Details</a>
-        <a routerLink="/membership-details" routerLinkActive="active">Membership Plans</a>
-        <a routerLink="/home" routerLinkActive="active">Home</a>
-        <span>Account</span>
-    </nav>
+<div class="menuBar">
+    <div class="title">
+        <nav>
+            <a routerLink="/home">Welcome to {{title.toUpperCase()}}!</a>
+        </nav>
+    </div>
+    <div class="mainButtons">
+        <nav>
+            <!-- routerLinkActive is the CSS of router -->
+            <a routerLink="/user-details">Members</a>
+            <a routerLink="/membership-details">Plans</a>
+            <a routerLink="/home">Home</a>
+            <a (click)="onClick()" class="accountButton">Account</a>
+        </nav>
+        <div *ngIf="isAccountClicked" class="accountOptionsDiv">
+            <div class="accountOptions1">Login</div>
+            <div class="accountOptions1">Logout</div>
+            <div class="accountOptions1">Sign up</div>
+            <div class="accountOptions1">Settings</div>
+            <div class="accountOptions1">Data</div>
+         </div>
+    </div>
+
 </div>
