@@ -10,8 +10,6 @@ n
 y
 Isrc/main/java/com/gym/gymmembership/repository/AccountTypeRepository.java,1\4\14df61b533db48d8a237c2c7ffd84ff73d60121c
 k
-;src/main/java/com/gym/gymmembership/dto/UserDetailsDTO.java,2\f\2f94d9d0d5c6f7d6bc3ccf5a0336950946677bf7
-k
 ;src/main/java/com/gym/gymmembership/domain/AccountType.java,f\f\ff270f941ca7c0cd6e74d4711fefded82f18c6b6
 n
 >src/main/java/com/gym/gymmembership/domain/MembershipType.java,5\a\5a6be101b38503458976a568df51825a6195ac61
@@ -41,8 +39,6 @@ Csrc/main/java/com/gym/gymmembership/service/AccountTypeService.java,e\7\e7361b
 Lsrc/main/java/com/gym/gymmembership/service/impl/AccountTypeServiceImpl.java,b\0\b0fd5ca9cacab67a257712931b54c5cca2535c3e
 x
 Hsrc/main/java/com/gym/gymmembership/controller/UtilConfigController.java,b\1\b15f354f882c0034529341e359caaeb0db9ddd98
-|
-Lsrc/main/java/com/gym/gymmembership/service/impl/UserDetailsServiceImpl.java,1\f\1f56406c99f65483c849df41f4040f118e660d44
 |
 Lsrc/main/java/com/gym/gymmembership/controller/MembershipTypeController.java,4\7\47372151b3df7cca8a5e58e31974b728b1ddb95f
 q
