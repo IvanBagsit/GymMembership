@@ -1,0 +1,69 @@
+.loginDiv {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0px;
+    height: calc(100vh - 90px);
+}
+
+.loginImg, .loginForm {
+    display: inline-block;
+    margin: 1%;
+}
+
+.loginInput, .loginSignup {
+    display: block;
+    padding-top: 5%;
+    padding-bottom: 5%;
+}
+
+.loginForm {
+    position: relative;
+    border: solid grey;
+    border-radius: 10px;
+    border-width: 1px;
+    height: 250px;
+    width: 300px;
+}
+
+input[type=text], input[type=password]{
+    position: absolute;
+    right: 5%;
+    height: 20px;
+    border-radius: 7px;
+    border-width: 1px;
+}
+
+.loginUsername, .loginPassword, .forgotPasswordButton, .loginSignup {
+    margin: 5%;
+}
+
+.loginButton {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 90%;
+    height: 30px;
+    background-color: #00B2FF;
+    border: transparent;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}
+
+.loginSignup {
+    margin-top: 0px;
+}
+
+.loginSignupButton, .forgotPasswordButton, button {
+    cursor: pointer;
+}
+
+.loginSignupButton {
+    font-weight: bold;
+    color: #00B2FF;
+}

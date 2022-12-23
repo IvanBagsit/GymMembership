@@ -1,0 +1,23 @@
+<div class="signupBackground">
+    <div class="signupForm">
+        <form class="signupInput">
+            <input type="text" required placeholder="Username">
+            <input type="password" required placeholder="Password">
+            <input type="text" required placeholder="First Name">
+            <input type="text" required placeholder="Last Name">
+            <input type="checkbox" required id="termsAndCondition" name="termsAndCondition">
+            <label for="termsAndCondition">I accept the
+                <span routerLink="/terms-and-condition" class="termsAndCondition">
+                    Terms and Condition
+                </span>
+            </label>
+            <div class="submitButton">
+                <button type="submit">Submit</button>
+            </div>
+            <div class="signupLogin">
+                Have an account?
+                <span routerLink="/login" class="signupLoginButton">Login</span>
+            </div>
+        </form>
+    </div>
+</div>

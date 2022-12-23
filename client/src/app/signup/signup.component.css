@@ -1,0 +1,62 @@
+.signupBackground {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: middle;
+    margin: 0px;
+    height: calc(100vh - 90px);
+}
+
+input[type=text], input[type=password], button, .signupLogin {
+    display: block;
+}
+
+.termsAndCondition, .signupLoginButton {
+    color: #00B2FF;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signupForm {
+    position: relative;
+    border: solid grey;
+    border-radius: 10px;
+    border-width: 1px;
+    display: flex;
+    justify-content: center;
+    vertical-align: middle;
+    align-items: center;
+    height: 400px;
+    width: 300px;
+}
+
+input, button, .signupLogin {
+    margin-top: 10px;
+    margin-bottom: 10px
+}
+
+.signupLogin {
+    margin-top: 40px;
+}
+
+input[type=text], input[type=password]  {
+    height: 30px;
+    width: 100%;
+    border-radius: 7px;
+    border-width: 1px;
+}
+
+.submitButton {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    width: 100%;
+    height: 30px;
+    background-color: #00B2FF;
+    border: transparent;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+}

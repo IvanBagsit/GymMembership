@@ -10,6 +10,11 @@ import { UserDetailsComponent } from './user-details/user-details.component';
 import { FrontEndComponent } from './front-end/front-end.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { HomepageComponent } from './homepage/homepage.component';
+import { LoginComponent } from './login/login.component';
+import { SignupComponent } from './signup/signup.component';
+import { SettingsComponent } from './settings/settings.component';
+import { DataComponent } from './data/data.component';
+import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 
 @NgModule({
   declarations: [
@@ -17,7 +22,12 @@ import { HomepageComponent } from './homepage/homepage.component';
     routingComponents,
     FrontEndComponent,
     PageNotFoundComponent,
-    HomepageComponent
+    HomepageComponent,
+    LoginComponent,
+    SignupComponent,
+    SettingsComponent,
+    DataComponent,
+    TermsAndConditionComponent
   ],
   imports: [
     BrowserModule,
