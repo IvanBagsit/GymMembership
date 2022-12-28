@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { GymApiService } from '../gym-api.service';
 
 @Component({
   selector: 'app-signup',
@@ -7,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SignupComponent implements OnInit {
 
+  public title : string = "";
 
-  constructor() { }
+  constructor(protected gymApiService: GymApiService) { }
 
   ngOnInit(): void {
+    this.retrieveConfig('title');
   }
   
+  retrieveConfig(name: string){
+    this.gymApiService.retrieveConfig(name).subscribe(config => this.title = config);
+  }
 }

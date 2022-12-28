@@ -47,6 +47,7 @@ a {
   color: white;
   text-align: center;
   width: 100px;
+  z-index: 1000;
 }
 
 .accountOptions1 {
