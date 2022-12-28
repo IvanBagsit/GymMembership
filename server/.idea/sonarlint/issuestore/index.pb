@@ -11,8 +11,6 @@ y
 Isrc/main/java/com/gym/gymmembership/repository/AccountTypeRepository.java,1\4\14df61b533db48d8a237c2c7ffd84ff73d60121c
 k
 ;src/main/java/com/gym/gymmembership/domain/AccountType.java,f\f\ff270f941ca7c0cd6e74d4711fefded82f18c6b6
-n
->src/main/java/com/gym/gymmembership/domain/MembershipType.java,5\a\5a6be101b38503458976a568df51825a6195ac61
 k
 ;src/main/java/com/gym/gymmembership/domain/UserDetails.java,9\b\9b5c66176c726b4a17c579fa3262a4ddb6e8244b
 s
