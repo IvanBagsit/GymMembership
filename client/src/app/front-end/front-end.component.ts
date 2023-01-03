@@ -28,7 +28,6 @@ export class FrontEndComponent implements OnInit {
     else{
       this.isAccountClicked = false;
     }
-    console.log(this.isAccountClicked);
   }
 
 

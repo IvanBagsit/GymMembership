@@ -13,6 +13,7 @@ export class UserDetailsComponent implements OnInit {
   public userDetails: IUserDetails [] = [];
   public membershipType: IMembershipType[] = [];
   public idArrays: Array<number> = [];
+  public isClicked: boolean = false;
 
   constructor(protected gymApiService: GymApiService) { }
 
@@ -27,6 +28,15 @@ export class UserDetailsComponent implements OnInit {
 
   getMembershipDetails(){
     this.gymApiService.retrieveMembershipPlans().subscribe(details => this.membershipType = details);
+  }
+
+  filterClicked(){
+    if(this.isClicked === false){
+      this.isClicked = true;
+    }
+    else{
+      this.isClicked = false;
+    }
   }
 
 }

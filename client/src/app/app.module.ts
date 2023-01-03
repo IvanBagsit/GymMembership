@@ -13,7 +13,6 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SettingsComponent } from './settings/settings.component';
-import { DataComponent } from './data/data.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { TermsAndConditionComponent } from './terms-and-condition/terms-and-cond
     LoginComponent,
     SignupComponent,
     SettingsComponent,
-    DataComponent,
     TermsAndConditionComponent
   ],
   imports: [

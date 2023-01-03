@@ -1,0 +1,105 @@
+.filterDiv {
+    margin: 20px;
+    margin-top: 40px;
+}
+
+.filterTitle {
+    padding: 10px;
+    font-weight: bolder;
+    font-size: large;
+    color: white;
+    background-color: #6F7171;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.filterOptions {
+    padding: 10px;
+    margin-top: 20px;
+    border: 1px solid #6F7171;
+}
+
+.searchDiv > * {
+    margin: 5px;
+}
+
+.searchDiv {
+    padding: 20px;
+}
+
+.filterOptionsInputsDiv {
+    margin: 5px;
+}
+
+input[type=date]{
+    margin-left: 20px;
+}
+
+.filterOptionsInputsLabel {
+    display: inline-block;
+    width: 40px;
+}
+
+input {
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+}
+
+select {
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+    width: 100px;
+    text-align: center;
+    margin-left: 20px;
+}
+
+.applyButton {
+    margin: 10px;
+    margin-top: 40px;
+    width: 200px;
+}
+
+button {
+    height: 30px;
+    width: 100px;
+    background-color: #00B2FF;
+    border: transparent;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.tableDiv {
+    padding: 20px;
+}
+
+table {
+    width: 100%;
+}
+
+th {
+    padding: 10px;
+    text-align: center;
+    color: white;
+    background-color: #6F7171;
+}
+
+td {
+    text-align: center;
+    padding: 5px;
+}
+
+.filterOptionsTitle {
+    font-weight: bold;
+}
+
+.filterOptionsDiv {
+    padding: 10px;
+}
+
+.filterOptionsInputs {
+    padding: 10px;
+}
