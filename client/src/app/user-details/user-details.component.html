@@ -42,7 +42,7 @@
             <th>Last Login</th>
             <th>Last Logout</th>
         </tr>
-        <tr *ngFor="let userDetail of userDetails;">
+        <tr (click)="onSelect(userDetail)" *ngFor="let userDetail of userDetails">
             <td>{{userDetail.id}}</td>
             <td>{{userDetail.firstName}}</td>
             <td>{{userDetail.lastName}}</td>

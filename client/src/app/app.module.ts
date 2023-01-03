@@ -14,6 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
+import { UserDetailsInformationComponent } from './user-details-information/user-details-information.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { TermsAndConditionComponent } from './terms-and-condition/terms-and-cond
     LoginComponent,
     SignupComponent,
     SettingsComponent,
-    TermsAndConditionComponent
+    TermsAndConditionComponent,
+    UserDetailsInformationComponent
   ],
   imports: [
     BrowserModule,

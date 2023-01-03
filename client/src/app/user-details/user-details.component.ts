@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { GymApiService } from '../gym-api.service';
 import { IUserDetails } from '../model/user-details';
 import { IMembershipType } from '../model/membership-type';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-user-details',
@@ -15,7 +17,10 @@ export class UserDetailsComponent implements OnInit {
   public idArrays: Array<number> = [];
   public isClicked: boolean = false;
 
-  constructor(protected gymApiService: GymApiService) { }
+  constructor(
+    protected gymApiService: GymApiService,
+    protected router: Router
+    ) { }
 
   ngOnInit(): void {
     this.getUserDetails();
@@ -37,6 +42,10 @@ export class UserDetailsComponent implements OnInit {
     else{
       this.isClicked = false;
     }
+  }
+
+  onSelect(userDetails: IUserDetails){
+    this.router.navigate(['/user-details',userDetails.id]);
   }
 
 }

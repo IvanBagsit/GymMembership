@@ -13,8 +13,6 @@ k
 ;src/main/java/com/gym/gymmembership/domain/AccountType.java,f\f\ff270f941ca7c0cd6e74d4711fefded82f18c6b6
 k
 ;src/main/java/com/gym/gymmembership/domain/UserDetails.java,9\b\9b5c66176c726b4a17c579fa3262a4ddb6e8244b
-s
-Csrc/main/java/com/gym/gymmembership/service/UserDetailsService.java,f\e\febc1f158de648654b5d9fc7b8a4c4d792b92443
 r
 Bsrc/main/java/com/gym/gymmembership/service/UtilConfigService.java,b\9\b98a79fdc8221f0ce4cba660ff592220b93cc86b
 t
@@ -35,8 +33,6 @@ s
 Csrc/main/java/com/gym/gymmembership/service/AccountTypeService.java,e\7\e7361b425ca43192514ce1a6c07d8d994d69c11b
 |
 Lsrc/main/java/com/gym/gymmembership/service/impl/AccountTypeServiceImpl.java,b\0\b0fd5ca9cacab67a257712931b54c5cca2535c3e
-x
-Hsrc/main/java/com/gym/gymmembership/controller/UtilConfigController.java,b\1\b15f354f882c0034529341e359caaeb0db9ddd98
 |
 Lsrc/main/java/com/gym/gymmembership/controller/MembershipTypeController.java,4\7\47372151b3df7cca8a5e58e31974b728b1ddb95f
 q

@@ -34,6 +34,19 @@ public class UserDetailsController {
         return response;
     }
 
+    @GetMapping("/details/{id}")
+    @ApiOperation(value = "Retrieve specific user details")
+    public ResponseEntity<UserDetails> getUserDetails(@PathVariable Long id){
+        log.info("Retrieveing user details with id of {}", id);
+        ResponseEntity<UserDetails> response;
+        try{
+            response = ResponseEntity.ok(userDetailsService.fetchUserDetail(id));
+        } catch (Exception e) {
+            response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+        return response;
+    }
+
     @PostMapping("/create")
     @ApiOperation(value = "User creation")
     public ResponseEntity<UserDetailsDTO> addUser(@RequestBody UserDetailsDTO userDetailsDTO) throws Exception {

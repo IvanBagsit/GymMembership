@@ -57,7 +57,7 @@ select {
 
 .applyButton {
     margin: 10px;
-    margin-top: 40px;
+    margin-top: 20px;
     width: 200px;
 }
 
@@ -90,6 +90,7 @@ th {
 td {
     text-align: center;
     padding: 5px;
+    cursor: pointer;
 }
 
 .filterOptionsTitle {
