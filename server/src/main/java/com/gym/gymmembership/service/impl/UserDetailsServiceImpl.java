@@ -10,7 +10,6 @@ import com.gym.gymmembership.repository.UserDetailsRepository;
 import com.gym.gymmembership.service.UserDetailsService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
@@ -32,6 +31,18 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public List<UserDetails> fetchAllUserDetails() {
         return userDetailsRepository.findAll();
+    }
+
+    @Override
+    public UserDetails fetchUserDetail(Long id) throws Exception {
+        Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
+        if(userDetails.isPresent()){
+            log.info("User Details found : {}", userDetails);
+            return userDetails.get();
+        } else {
+            log.info("Can't find user with id of {}", id);
+            throw new Exception("Error searching for the user with id : " + id);
+        }
     }
 
     @Override
