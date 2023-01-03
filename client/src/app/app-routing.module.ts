@@ -10,6 +10,7 @@ import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
+import { UserDetailsInformationComponent } from './user-details-information/user-details-information.component';
 
 const routes: Routes = [
   {path: 'home', component: HomepageComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'settings', component: SettingsComponent},
   {path: 'terms-and-condition', component: TermsAndConditionComponent},
   {path: 'user-details', component: UserDetailsComponent},
+  {path: 'user-details/:id', component: UserDetailsInformationComponent},
   {path: 'membership-details', component: MembershipDetailsComponent},
   {path: '', redirectTo:'/home', pathMatch: 'full'},
   {path: '**', component: PageNotFoundComponent}
@@ -36,5 +38,6 @@ export const routingComponents = [
   LoginComponent,
   SignupComponent,
   SettingsComponent,
-  TermsAndConditionComponent
+  TermsAndConditionComponent,
+  UserDetailsInformationComponent
 ];

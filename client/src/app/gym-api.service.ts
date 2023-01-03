@@ -23,6 +23,10 @@ export class GymApiService {
     return this.http.get<IUserDetails[]>(this.LOCAL_API_PATH + '/users/details');
   }
 
+  retrieveUserDetail(id: number): Observable<IUserDetails> {
+    return this.http.get<IUserDetails>(this.LOCAL_API_PATH + '/users/details/' + id);
+  }
+
   retrieveConfig(name: string): Observable<string> {
     const httpOptions = {
       headers: new HttpHeaders({

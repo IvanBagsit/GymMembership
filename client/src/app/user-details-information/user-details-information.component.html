@@ -1,0 +1,44 @@
+<div class="userDetailsMainDiv">
+    <form>
+        <h1>{{userDetails?.firstName}} {{userDetails?.lastName}}</h1>
+        <div>
+            <label>Username</label>
+            <input type="text" [defaultValue]="userDetails?.username">
+            <label>Password</label>
+            <input type="password" [defaultValue]="userDetails?.password">
+        </div>
+        <div>
+            <label>Birthday</label>
+            <input type="date" [defaultValue]="userDetails?.birthday">
+            <label>Age</label>
+            <input type="number" [defaultValue]="userDetails?.age">
+        </div>
+        <div>
+            <label>Last Login</label>
+            <input type="date" [defaultValue]="userDetails?.lastLogIn">
+            <label>Last Logout</label>
+            <input type="date" [defaultValue]="userDetails?.lastLogOut">
+        </div>
+        <div>
+            <label>Expiration Date</label>
+            <input type="date" [defaultValue]="userDetails?.expirationDate">
+            <label>Join Date</label>
+            <input type="date" [defaultValue]="userDetails?.joinDate">
+        </div>
+        <div>
+            <label>Terms and Condition</label>
+            <input type="text" [defaultValue]="userDetails?.termsAndCondition">
+            <label>Disable</label>
+            <input type="text" [defaultValue]="userDetails?.disable">
+        </div>
+        <div>
+            <label>Membership Type</label>
+            <input type="text" [defaultValue]="userDetails?.membershipType?.type">
+            <label>Account Role</label>
+            <input type="text" [defaultValue]="userDetails?.accountType?.role">
+        </div>
+        <div class="updateButton">
+        <button>Update</button>
+        </div>
+    </form>
+</div>
