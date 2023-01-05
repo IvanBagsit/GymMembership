@@ -1,3 +1,4 @@
+
 <div class="menuBar">
     <div class="title">
         <nav>
@@ -17,7 +18,8 @@
             <div class="accountOptions1" routerLink="/home">Logout</div>
             <div class="accountOptions1" routerLink="/signup">Sign up</div>
             <div class="accountOptions1" routerLink="/settings">Settings</div>
-         </div>
+        </div>
     </div>
 
 </div>
+<div class="backgroundDiv" *ngIf="isAccountClicked" (click)="onClick()"></div>

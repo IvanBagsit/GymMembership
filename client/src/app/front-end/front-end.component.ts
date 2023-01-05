@@ -30,6 +30,4 @@ export class FrontEndComponent implements OnInit {
     }
   }
 
-
-
 }

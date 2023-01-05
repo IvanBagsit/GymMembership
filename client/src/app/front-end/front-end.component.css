@@ -50,8 +50,22 @@ a {
   z-index: 1000;
 }
 
+.accountOptions1:hover {
+  background-color: rgba(0, 0, 0, 0.3);
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+  font-weight: bold;
+}
+
 .accountOptions1 {
   margin: 10%;
   cursor: pointer;
 }
 
+.backgroundDiv {
+  z-index: 999;
+  position: absolute;
+  width: 100%;
+  height: calc(0.95 * 100vh);
+  top: 0px;
+}

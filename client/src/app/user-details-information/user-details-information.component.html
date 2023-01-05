@@ -38,7 +38,10 @@
             <input type="text" [defaultValue]="userDetails?.accountType?.role">
         </div>
         <div class="updateButton">
-        <button>Update</button>
+            <button (click)="showConfirm()">Update</button>
+            <button (click)="goToUserDetails()">Back</button>
         </div>
     </form>
 </div>
+
+<router-outlet></router-outlet>
