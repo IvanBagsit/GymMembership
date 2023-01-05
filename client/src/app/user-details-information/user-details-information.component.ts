@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { GymApiService } from '../gym-api.service';
 import { IUserDetails } from '../model/user-details';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-details-information',
@@ -15,7 +15,8 @@ export class UserDetailsInformationComponent implements OnInit {
 
   constructor(
     protected gymApiService: GymApiService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -30,6 +31,16 @@ export class UserDetailsInformationComponent implements OnInit {
     this.gymApiService.retrieveUserDetail(id).subscribe(data => {
       this.userDetails = data;
     })
+  }
+
+  goToUserDetails() {
+    let selectedId = this.userId ? this.userId : null;
+    // this.router.navigate(['/user-details', {id: selectedId}]);
+    this.router.navigate(['../', {id: selectedId}], {relativeTo: this.route});
+  }
+
+  showConfirm() {
+    this.router.navigate(['confirm'], {relativeTo: this.route});
   }
 
 }
