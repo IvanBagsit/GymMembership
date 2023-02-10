@@ -38,6 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
         if(userDetails.isPresent()){
             log.info("User Details found : {}", userDetails);
+            log.info("TESTING OF PUSH RESET");
             return userDetails.get();
         } else {
             log.info("Can't find user with id of {}", id);
