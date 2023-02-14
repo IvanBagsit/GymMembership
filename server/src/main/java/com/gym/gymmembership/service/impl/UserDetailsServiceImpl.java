@@ -39,7 +39,6 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if(userDetails.isPresent()){
             log.info("User Details found : {}", userDetails);
             log.info("TESTING OF PUSH RESET");
-            log.info("ANOTHER TEST");
             return userDetails.get();
         } else {
             log.info("Can't find user with id of {}", id);
