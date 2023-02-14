@@ -93,12 +93,6 @@ td {
     cursor: pointer;
 }
 
-tr.selected {
-    background-color: rgba(0, 0, 0, 0.3);
-    color: #fff;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
-}
-
 .filterOptionsTitle {
     font-weight: bold;
 }

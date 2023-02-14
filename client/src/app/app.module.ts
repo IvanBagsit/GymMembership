@@ -15,7 +15,6 @@ import { SignupComponent } from './signup/signup.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 import { UserDetailsInformationComponent } from './user-details-information/user-details-information.component';
-import { ConfirmUpdateInformationComponent } from './confirm-update-information/confirm-update-information.component';
 
 @NgModule({
   declarations: [
@@ -28,8 +27,7 @@ import { ConfirmUpdateInformationComponent } from './confirm-update-information/
     SignupComponent,
     SettingsComponent,
     TermsAndConditionComponent,
-    UserDetailsInformationComponent,
-    ConfirmUpdateInformationComponent
+    UserDetailsInformationComponent
   ],
   imports: [
     BrowserModule,
