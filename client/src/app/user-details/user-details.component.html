@@ -1,3 +1,4 @@
+<!-- <h1>List of Members</h1> -->
 <div class="filterDiv">
     <div class="filterTitle" (click)="filterClicked()">Filter Members</div>
     <div class="filterOptions" *ngIf="isClicked">
@@ -9,7 +10,7 @@
                     <input type="date" id="dateFrom" name="dateFrom">
                 </div>
                 <div class="filterOptionsInputsDiv">
-                    <label for="dateTo" class="filterOptionsInputsLabel">To:</label>
+                    <label for="dateTo" >To:</label>
                     <input type="date" id="dateTo" name="dateTo">
                 </div>
             </div>
@@ -32,7 +33,7 @@
     <button>Search</button>
 </div>
 <div class="tableDiv">
-    <table class="items">
+    <table>
         <tr>
             <th>Gym ID</th>
             <th>First Name</th>
@@ -41,7 +42,7 @@
             <th>Last Login</th>
             <th>Last Logout</th>
         </tr>
-        <tr (click)="onSelect(userDetail)" [class.selected]="isSelected(userDetail)" *ngFor="let userDetail of userDetails">
+        <tr (click)="onSelect(userDetail)" *ngFor="let userDetail of userDetails">
             <td>{{userDetail.id}}</td>
             <td>{{userDetail.firstName}}</td>
             <td>{{userDetail.lastName}}</td>
