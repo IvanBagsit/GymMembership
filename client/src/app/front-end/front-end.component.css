@@ -55,3 +55,11 @@ a {
   cursor: pointer;
 }
 
+.frontendBackground {
+  position: absolute;
+  z-index: 999;
+  top: 0;
+  left: 0;
+  height: calc(100vh - 5px);
+  width: calc(100vw - 5px);
+}
