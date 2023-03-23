@@ -36,7 +36,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails fetchUserDetail(Long id) throws Exception {
         Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
-        if(userDetails.isPresent()){
+        if(Optional.ofNullable(userDetails).isPresent()){
             log.info("User Details found : {}", userDetails);
             return userDetails.get();
         } else {
@@ -47,6 +47,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetailsDTO addUser(UserDetailsDTO userDetailsDTO) throws Exception {
+        log.info("Starting addUser() - {}", userDetailsDTO);
         UserDetails userDetails = new UserDetails();
         Optional<AccountType> role = accountTypeRepository.findByRole(userDetailsDTO.getAccountType().getRole());
         Optional<MembershipType> membershipType = membershipTypeRepository.findByTypeAndFeeAndDuration(
@@ -55,7 +56,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if (role.isPresent() && membershipType.isPresent()) {
+        if (Optional.ofNullable(role).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
             log.info("found role and membership type: {} - {}", role, membershipType);
             userDetails.setUsername(userDetailsDTO.getUsername());
             userDetails.setPassword(userDetailsDTO.getPassword());
@@ -92,7 +93,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if(user.isPresent() && membershipType.isPresent()) {
+        if(Optional.ofNullable(user).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
             log.info("found user to be updated: {} - {}", user, membershipType);
             user.get().setUsername(userDetailsDTO.getUsername());
             user.get().setPassword(userDetailsDTO.getPassword());

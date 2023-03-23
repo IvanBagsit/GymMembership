@@ -15,6 +15,7 @@ import java.util.Date;
 @AllArgsConstructor
 public class UserDetailsDTO {
 
+    @Nullable
     private Long id;
     private String username;
     private String password;

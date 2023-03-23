@@ -29,7 +29,7 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
                 membershipTypeDTO.getType(),
                 membershipTypeDTO.getDuration()
         );
-        if(membership.isPresent()){
+        if(Optional.ofNullable(membership).isPresent()){
             log.info("Error adding membership plan : {}", membershipTypeDTO);
             throw new IllegalArgumentException("Membership Plan already available in the database");
         }
@@ -52,7 +52,7 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
                 membershipTypeDTO.getDuration()
         );
 
-        if (membership.isPresent()) {
+        if (Optional.ofNullable(membership).isPresent()) {
             log.info("found membership Type : {}", membership.get());
             membership.get().setType(membershipTypeDTO.getType());
             membership.get().setFee(membershipTypeDTO.getFee());
@@ -73,7 +73,7 @@ public class MembershipTypeServiceImpl implements MembershipTypeService {
                 membershipTypeDTO.getFee(),
                 membershipTypeDTO.getDuration()
         );
-        if(membership.isPresent()) {
+        if(Optional.ofNullable(membership).isPresent()) {
             log.info("found membership Type : {}", membership.get());
             membershipTypeRepository.deleteByType(membershipTypeDTO.getType());
             log.info("Successfully deleted: {}", membershipTypeDTO.getType());

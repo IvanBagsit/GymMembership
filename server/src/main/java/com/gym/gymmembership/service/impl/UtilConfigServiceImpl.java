@@ -19,7 +19,7 @@ public class UtilConfigServiceImpl implements UtilConfigService {
     @Override
     public String retrieveConfig(String name) {
         Optional<UtilityConfiguration> utilConfig = utilityConfigurationRepository.findFirstByName(name);
-        if(utilConfig.isPresent()) {
+        if(Optional.ofNullable(utilConfig).isPresent()) {
             log.info("Returning config: {}", utilConfig.get().getConfig());
             return utilConfig.get().getConfig();
         }
