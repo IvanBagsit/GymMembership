@@ -1,9 +1,9 @@
+<!-- Template Driven Form -->
 <div class="signupBackground">
     <div class="signupForm">
-        <form class="signupInput" #signupForm="ngForm" (ngSubmit)="onSubmit()" novalidate>
+        <form class="signupInput" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.form.invalid)" novalidate>
           <div ngModelGroup="signupForm">
             <h2>{{title.toUpperCase()}}</h2>
-            {{signupForm.value | json}}
             <div class="form-group">
               <input type="text" [style.border-color]="username.touched && username.invalid ? 'red' : 'black'" required placeholder="Username" #username="ngModel" name="username" class="form-control" [(ngModel)]="signupModel.username">
             </div>
@@ -19,13 +19,15 @@
             <div class="form-group">
               <label class="signupMembershipLabel">Membership:</label>
               <select required #membershipTyped="ngModel" name="membershipType" class="custom-select" [(ngModel)]="signupModel.membershipType">
-                <option selected disabled value="undefined">-- Please Select Type --</option>
                 <option 
                 *ngFor="let membershipTypes of membershipType" 
                 [ngValue]="membershipTypes">
                 {{membershipTypes.fee | currency: 'PHP'}} - {{membershipTypes.duration}} day/s
                 </option>
               </select>
+              <div>
+                <small *ngIf="membershipTyped.touched && membershipTyped.invalid">Required membership</small>
+              </div>
             </div>
             <input type="checkbox" [style.border-color]="termsAndCondition.touched && termsAndCondition.invalid ? 'red' : 'black'" required #termsAndCondition="ngModel" id="termsAndCondition" name="termsAndCondition" class="form-check-input" [(ngModel)]="signupModel.termsAndCondition">
             <label for="termsAndCondition">I accept the
@@ -37,10 +39,15 @@
               <small *ngIf="termsAndCondition.touched && termsAndCondition.invalid">Required terms and condition</small>
             </div>
             <div class="submitButton">
-                <button type="submit" [disabled]="!signupForm.form.valid" (click)="onClick(signupForm.form.invalid)">Sign up</button>
+                <button type="submit" >Sign up</button>
             </div>
             <div>
               <small *ngIf="formValidation">Required field inputs</small>
+            </div>
+            <div class="alert alert-danger" *ngIf="errorMsg">
+              <small>
+                {{errorMsg}}
+              </small>
             </div>
             <div class="signupLogin">
                 Have an account?

@@ -58,6 +58,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
         if (Optional.ofNullable(role).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
             log.info("found role and membership type: {} - {}", role, membershipType);
+            Optional<UserDetails> user =  userDetailsRepository.findByUsername(userDetailsDTO.getUsername());
+            if(user.isPresent()){
+                log.info("Username already existing : {}", userDetailsDTO);
+                throw new Exception("Username already Existing");
+            }
             userDetails.setUsername(userDetailsDTO.getUsername());
             userDetails.setPassword(userDetailsDTO.getPassword());
             userDetails.setFirstName(userDetailsDTO.getFirstName());

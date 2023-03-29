@@ -15,9 +15,10 @@ export class SignupComponent implements OnInit {
   public title : string = "";
   public formValidation : boolean = false;
   public membershipType: IMembershipType[] = [];
+  public errorMsg: string = "";
 
   signupModel: UserDetails = new UserDetails(0,"",undefined,"","",0,new Date,new Date,new Date,
-  new Date,new Date,false,false, new MembershipType(1,"Daily",50,"1"), new AccountType(2,"user")
+  new Date,new Date,false,false, undefined, new AccountType(2,"user")
   );
 
   constructor(protected gymApiService: GymApiService) { }
@@ -31,16 +32,20 @@ export class SignupComponent implements OnInit {
     this.gymApiService.retrieveConfig(name).subscribe(config => this.title = config);
   }
 
-  onClick(formValue: boolean){
+  onSubmit(formValue: boolean){
+    
     formValue === true ? this.formValidation = true : this.formValidation = false;
-  }
 
-  onSubmit(){
-    console.log('MODEL', this.signupModel);
-    this.gymApiService.signupNewMember(this.signupModel).subscribe(
-      data => console.log('Success!', data),
-      error => console.log('Error!', error)
-    );
+    if(this.formValidation === false){
+      console.log('MODEL', this.signupModel);
+      this.gymApiService.signupNewMember(this.signupModel).subscribe(
+        data => {
+          console.log('Succes!', data),
+          location.reload()
+      },
+        error => this.errorMsg = error.error.toString()
+      );
+    }
   }
 
   getMembershipDetails(){

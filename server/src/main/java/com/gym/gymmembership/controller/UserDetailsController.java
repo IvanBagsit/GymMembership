@@ -49,15 +49,15 @@ public class UserDetailsController {
 
     @PostMapping("/create")
     @ApiOperation(value = "User creation")
-    public ResponseEntity<UserDetailsDTO> addUser(@RequestBody UserDetailsDTO userDetailsDTO) throws Exception {
+    public ResponseEntity<Object> addUser(@RequestBody UserDetailsDTO userDetailsDTO) throws Exception {
         log.info("Start of user creation");
-        ResponseEntity<UserDetailsDTO> response;
+        ResponseEntity<Object> response;
         try {
             response = ResponseEntity.ok(userDetailsService.addUser(userDetailsDTO));
+            return response;
         } catch (Exception e){
-            response = new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-        return response;
     }
 
     @PutMapping("/update")
