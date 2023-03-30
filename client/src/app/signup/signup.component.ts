@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   public membershipType: IMembershipType[] = [];
   public errorMsg: string = "";
 
-  signupModel: UserDetails = new UserDetails(0,"",undefined,"","",0,new Date,new Date,new Date,
+  signupModel: UserDetails = new UserDetails(0,"",undefined,"","",0,undefined,undefined,undefined,
   new Date,new Date,false,false, undefined, new AccountType(2,"user")
   );
 
