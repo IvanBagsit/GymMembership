@@ -1,9 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Head, Observable } from 'rxjs';
 import { throws } from 'assert';
 import { IMembershipType } from './model/membership-type';
-import { IUserDetails } from './model/user-details';
+import { IUserDetails, UserDetails } from './model/user-details';
+import { Signup } from './model/signup';
+import { catchError } from 'rxjs';
+import { throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -36,6 +39,15 @@ export class GymApiService {
       responseType: 'text' as 'json' // We accept plain text as response
     };
     return this.http.get<string>(this.LOCAL_API_PATH + '/config/retrieve/' + name, httpOptions);
+  }
+
+  signupNewMember(userDetails: UserDetails): Observable<UserDetails>{
+    return this.http.post<UserDetails>(this.LOCAL_API_PATH + '/users/create', userDetails)
+    .pipe(catchError(this.errorHandler))
+  }
+
+  errorHandler(error:HttpErrorResponse){
+    return throwError(error);
   }
 
 }

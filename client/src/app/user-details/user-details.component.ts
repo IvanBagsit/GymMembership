@@ -28,7 +28,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   getUserDetails(){
-    this.gymApiService.retrieveUserDetails().subscribe(detail => this.userDetails = detail);
+    this.gymApiService.retrieveUserDetails().subscribe(detail => this.userDetails = detail.reverse());
   }
 
   getMembershipDetails(){

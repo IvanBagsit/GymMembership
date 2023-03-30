@@ -39,16 +39,14 @@
             <th>First Name</th>
             <th>Last Name</th>
             <th>Membership Type</th>
-            <th>Last Login</th>
-            <th>Last Logout</th>
+            <th>Expiration Date (dd/MM/yyyy)</th>
         </tr>
         <tr (click)="onSelect(userDetail)" *ngFor="let userDetail of userDetails">
             <td>{{userDetail.id}}</td>
             <td>{{userDetail.firstName}}</td>
             <td>{{userDetail.lastName}}</td>
             <td>{{userDetail.membershipType.type}}</td>
-            <td>{{userDetail.lastLogIn | date: 'medium'}}</td>
-            <td>{{userDetail.lastLogOut | date: 'medium'}}</td>
+            <td>{{userDetail.expirationDate | date: 'dd/MM/yyyy'}}</td>
         </tr>
     </table>
 </div>

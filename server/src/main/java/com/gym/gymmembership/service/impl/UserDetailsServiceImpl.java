@@ -8,11 +8,13 @@ import com.gym.gymmembership.repository.AccountTypeRepository;
 import com.gym.gymmembership.repository.MembershipTypeRepository;
 import com.gym.gymmembership.repository.UserDetailsRepository;
 import com.gym.gymmembership.service.UserDetailsService;
+import com.gym.gymmembership.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -36,7 +38,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails fetchUserDetail(Long id) throws Exception {
         Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
-        if(userDetails.isPresent()){
+        if(Optional.ofNullable(userDetails).isPresent()){
             log.info("User Details found : {}", userDetails);
             return userDetails.get();
         } else {
@@ -47,6 +49,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Override
     public UserDetailsDTO addUser(UserDetailsDTO userDetailsDTO) throws Exception {
+        log.info("Starting addUser() - {}", userDetailsDTO);
         UserDetails userDetails = new UserDetails();
         Optional<AccountType> role = accountTypeRepository.findByRole(userDetailsDTO.getAccountType().getRole());
         Optional<MembershipType> membershipType = membershipTypeRepository.findByTypeAndFeeAndDuration(
@@ -55,8 +58,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if (role.isPresent() && membershipType.isPresent()) {
+        if (Optional.ofNullable(role).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
             log.info("found role and membership type: {} - {}", role, membershipType);
+            Optional<UserDetails> user =  userDetailsRepository.findByUsername(userDetailsDTO.getUsername());
+            if(user.isPresent()){
+                log.info("Username already existing : {}", userDetailsDTO);
+                throw new Exception("Username already Existing");
+            }
             userDetails.setUsername(userDetailsDTO.getUsername());
             userDetails.setPassword(userDetailsDTO.getPassword());
             userDetails.setFirstName(userDetailsDTO.getFirstName());
@@ -66,11 +74,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails.setDisable(false);
             userDetails.setBirthday(userDetailsDTO.getBirthday());
             userDetails.setAge(userDetailsDTO.getAge());
-            userDetails.setExpirationDate(userDetailsDTO.getExpirationDate());
-            userDetails.setLastLogIn(null);
-            userDetails.setLastLogOut(null);
+            userDetails.setExpirationDate(
+                    CommonUtil.currentDate().plusDays(Long.valueOf(userDetailsDTO.getMembershipType().getDuration()))
+            );
+            userDetails.setLastLogIn(userDetailsDTO.getLastLogIn());
+            userDetails.setLastLogOut(userDetailsDTO.getLastLogOut());
             userDetails.setTermsAndCondition(userDetailsDTO.getTermsAndCondition());
-            userDetails.setJoinDate(Date.from(LocalDateTime.now().atZone(ZoneId.of("Asia/Manila")).toInstant()));
+            userDetails.setJoinDate(CommonUtil.convertToLocalDate(LocalDateTime.now()));
 
             userDetailsRepository.save(userDetails);
             log.info("Successfully added User: {} in the database", userDetailsDTO.getUsername());
@@ -92,7 +102,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if(user.isPresent() && membershipType.isPresent()) {
+        if(Optional.ofNullable(user).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
             log.info("found user to be updated: {} - {}", user, membershipType);
             user.get().setUsername(userDetailsDTO.getUsername());
             user.get().setPassword(userDetailsDTO.getPassword());

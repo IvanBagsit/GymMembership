@@ -9,6 +9,7 @@ import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.lang.Nullable;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -39,23 +40,23 @@ public class UserDetails {
 
     @Nullable
     @Column(name = "BIRTHDAY")
-    private Date birthday;
+    private LocalDate birthday;
 
     @Nullable
     @Column(name = "LAST_LOGIN")
-    private Date lastLogIn;
+    private LocalDate lastLogIn;
 
     @Nullable
     @Column(name = "LAST_LOGOUT")
-    private Date lastLogOut;
+    private LocalDate lastLogOut;
 
     @Nullable
     @Column(name = "EXPIRATION_DATE")
-    private Date expirationDate;
+    private LocalDate expirationDate;
 
     @CreationTimestamp
     @Column(name = "JOIN_DATE")
-    private Date joinDate;
+    private LocalDate joinDate;
 
     @Column(name = "TERMS_AND_CONDITION")
     private Boolean termsAndCondition;
