@@ -15,6 +15,7 @@ import { SignupComponent } from './signup/signup.component';
 import { SettingsComponent } from './settings/settings.component';
 import { TermsAndConditionComponent } from './terms-and-condition/terms-and-condition.component';
 import { UserDetailsInformationComponent } from './user-details-information/user-details-information.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { UserDetailsInformationComponent } from './user-details-information/user
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [GymApiService],
   bootstrap: [AppComponent]

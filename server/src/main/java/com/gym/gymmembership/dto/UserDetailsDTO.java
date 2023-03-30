@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.lang.Nullable;
 
 import java.lang.reflect.Member;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -27,12 +28,14 @@ public class UserDetailsDTO {
     private String type;
     private Integer fee;
     private String duration;
-    private Date expirationDate;
+    private LocalDate expirationDate;
+    private LocalDate lastLogIn;
+    private LocalDate lastLogOut;
     private Boolean disable;
 
     @Nullable
     private Integer age;
 
     @Nullable
-    private Date birthday;
+    private LocalDate birthday;
 }

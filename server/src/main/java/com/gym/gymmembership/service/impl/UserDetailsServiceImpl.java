@@ -8,11 +8,13 @@ import com.gym.gymmembership.repository.AccountTypeRepository;
 import com.gym.gymmembership.repository.MembershipTypeRepository;
 import com.gym.gymmembership.repository.UserDetailsRepository;
 import com.gym.gymmembership.service.UserDetailsService;
+import com.gym.gymmembership.util.CommonUtil;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
+import java.time.Instant;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
@@ -72,11 +74,13 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails.setDisable(false);
             userDetails.setBirthday(userDetailsDTO.getBirthday());
             userDetails.setAge(userDetailsDTO.getAge());
-            userDetails.setExpirationDate(userDetailsDTO.getExpirationDate());
-            userDetails.setLastLogIn(null);
-            userDetails.setLastLogOut(null);
+            userDetails.setExpirationDate(
+                    CommonUtil.currentDate().plusDays(Long.valueOf(userDetailsDTO.getMembershipType().getDuration()))
+            );
+            userDetails.setLastLogIn(userDetailsDTO.getLastLogIn());
+            userDetails.setLastLogOut(userDetailsDTO.getLastLogOut());
             userDetails.setTermsAndCondition(userDetailsDTO.getTermsAndCondition());
-            userDetails.setJoinDate(Date.from(LocalDateTime.now().atZone(ZoneId.of("Asia/Manila")).toInstant()));
+            userDetails.setJoinDate(CommonUtil.convertToLocalDate(LocalDateTime.now()));
 
             userDetailsRepository.save(userDetails);
             log.info("Successfully added User: {} in the database", userDetailsDTO.getUsername());
