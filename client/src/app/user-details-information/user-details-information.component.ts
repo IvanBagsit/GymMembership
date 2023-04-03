@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { GymApiService } from '../gym-api.service';
 import { IUserDetails } from '../model/user-details';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
+import { IMembershipType } from '../model/membership-type';
 
 @Component({
   selector: 'app-user-details-information',
@@ -13,10 +14,14 @@ export class UserDetailsInformationComponent implements OnInit {
 
   public userDetails !: IUserDetails;
   public userId !: any;
+  public booleanOptions : string[] = ['true', 'false'];
+  public membershipType: IMembershipType[] = [];
+  public membershipTypes: any[] = [];
 
   constructor(
     protected gymApiService: GymApiService,
     private route: ActivatedRoute,
+    protected router: Router,
     private formBuilder: FormBuilder
     ) { }
 
@@ -26,6 +31,17 @@ export class UserDetailsInformationComponent implements OnInit {
       this.userId = id;
     });
     this.retrieveUserDetail(this.userId);
+    this.getMembershipDetails();
+
+    // conditional validation
+    this.userDetailsInformationForm.get('age')?.valueChanges
+      .subscribe(checkedValue => {
+        const username = this.userDetailsInformationForm.get('username');
+        if(checkedValue){
+          username?.clearValidators();
+        }
+        username?.updateValueAndValidity();
+      })
   }
 
   get username() {
@@ -33,8 +49,11 @@ export class UserDetailsInformationComponent implements OnInit {
   }
 
   userDetailsInformationForm = this.formBuilder.group({
+    id: [],
     username: ['',[Validators.required,Validators.minLength(1)]],
     password: ['',Validators.required],
+    firstName: [],
+    lastName: [],
     birthday: [],
     age: [],
     lastLogIn: [],
@@ -64,8 +83,11 @@ export class UserDetailsInformationComponent implements OnInit {
 
   loadUserData(): void{
     this.userDetailsInformationForm.patchValue({
+      id: this.userId,
       username: this.userDetails.username,
       password: this.userDetails.password,
+      firstName: this.userDetails.firstName,
+      lastName: this.userDetails.lastName,
       birthday: this.userDetails.birthday,
       age: this.userDetails.age,
       lastLogIn: this.userDetails.lastLogIn,
@@ -84,7 +106,33 @@ export class UserDetailsInformationComponent implements OnInit {
         id: this.userDetails.accountType.id,
         role: this.userDetails.accountType.role
       }
-    })
+    });
+  }
+
+  getMembershipDetails(){
+    this.gymApiService.retrieveMembershipPlans().subscribe(details => this.membershipType = details);
+    this.membershipType.forEach(data => {
+      this.membershipTypes.push(data.type);
+    });
+  }
+
+  onSubmit() {
+    console.log('USER DETAILS UPDATE FORM',this.userDetailsInformationForm.value);
+    this.gymApiService.updateMemberDetails(this.userDetailsInformationForm.value).subscribe(
+      data => {
+        console.log('Success!', data);
+        location.reload();
+      },
+      error => console.log('Error!', error)
+    );
+  }
+
+  onDelete() {
+    this.gymApiService.deleteMember(this.userId).subscribe(data => {
+      console.log('Success!', data);
+    },
+    error => console.log('Error!', error));
+    this.router.navigate(['/home']);
   }
 
 }

@@ -3,6 +3,7 @@ import { GymApiService } from '../gym-api.service';
 import { IUserDetails } from '../model/user-details';
 import { IMembershipType } from '../model/membership-type';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 
 @Component({
@@ -19,12 +20,30 @@ export class UserDetailsComponent implements OnInit {
 
   constructor(
     protected gymApiService: GymApiService,
-    protected router: Router
+    protected router: Router,
+    private formBuilder: FormBuilder
     ) { }
 
   ngOnInit(): void {
     this.getUserDetails();
     this.getMembershipDetails();
+    this.loadUserDetalsForm();
+  }
+  
+  userDetailsForm = this.formBuilder.group({
+    dateFrom: [],
+    dateTo: [],
+    membershipTypes: [],
+    searchInput: []
+  });
+
+  loadUserDetalsForm() : void {
+    this.userDetailsForm.patchValue({
+      dateFrom: undefined,
+      dateTo: undefined,
+      membershipTypes: 'default',
+      searchInput: ''
+    })
   }
 
   getUserDetails(){
@@ -32,7 +51,7 @@ export class UserDetailsComponent implements OnInit {
   }
 
   getMembershipDetails(){
-    this.gymApiService.retrieveMembershipPlans().subscribe(details => this.membershipType = details);
+    this.gymApiService.retrieveMembershipPlans().subscribe(detail => this.membershipType = detail);
   }
 
   filterClicked(){
@@ -46,6 +65,18 @@ export class UserDetailsComponent implements OnInit {
 
   onSelect(userDetails: IUserDetails){
     this.router.navigate(['/user-details',userDetails.id]);
+  }
+
+  onSearch(){
+    this.gymApiService.retrieveFilteredUserList(this.userDetailsForm.value).subscribe(data => {
+      this.userDetails = data;
+      this.userDetails.reverse();
+      console.log('Success!', data)
+    }, error => console.log('Error!', error))
+  }
+
+  onClearFilter(){
+    location.reload();
   }
 
 }

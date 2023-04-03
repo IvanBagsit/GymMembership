@@ -1,9 +1,9 @@
 <!-- Reactive Form -->
 <div class="userDetailsMainDiv">
     <form [formGroup]="userDetailsInformationForm">
-        <div>
+        <!-- <div>
             {{userDetailsInformationForm.value | json}}
-        </div>
+        </div> -->
         <h1>{{userDetails?.firstName}} {{userDetails?.lastName}}</h1>
         <div class="form-group">
             <label>Username</label>
@@ -28,22 +28,31 @@
             <label>Expiration Date</label>
             <input type="date" formControlName="expirationDate" class="form-control">
             <label>Join Date</label>
-            <input type="date" formControlName="joinDate" class="form-control">
+            <input readonly type="date" formControlName="joinDate" class="form-control">
         </div>
         <div class="form-group">
-            <label>Terms and Condition</label>
-            <input type="text" formControlName="termsAndCondition" class="form-control">
             <label>Disable</label>
-            <!-- <select formControlName="disable" class="form-control">
-                <option>True</option>
-                <option>False</option>
-            </select> -->
-            <input type="text" formControlName="disable" class="form-control">
+            <select formControlName="disable" class="form-control">
+                <option *ngFor="let option of booleanOptions; index as i" 
+                [selected]="userDetailsInformationForm.get('disable')?.value">
+                {{option}}
+                </option>
+            </select>
+            <!-- <input type="text" formControlName="disable" class="form-control"> -->
+            <label>Terms and Condition</label>
+            <input readonly type="text" formControlName="termsAndCondition" class="form-control">
         </div>
         <div class="form-group">
-            <span formGroupName="membershipType">
-                <label>Membership Type</label>
-                <input type="text" formControlName="type" class="form-control">
+            <span>
+                <label>Membership</label>
+                <select formControlName="membershipType" class="form-control">
+                    <option 
+                    *ngFor="let membershipTypes of membershipType" 
+                    [ngValue]="membershipTypes"
+                    [selected]="userDetailsInformationForm.get('membershipType')?.value">
+                    {{membershipTypes.fee | currency: 'PHP'}} - {{membershipTypes.duration}} day/s
+                    </option>
+                </select>
             </span>
             <span formGroupName="accountType">
                 <label>Account Role</label>
@@ -51,7 +60,8 @@
             </span>
         </div>
         <div class="updateButton">
-            <button class="btn btn-primary" type="submit">Update</button>
+            <button [disabled]="!userDetailsInformationForm.valid" class="btn1" type="submit" (click)="onSubmit()">Update</button>
+            <button class="btn2" (click)="onDelete()">Delete</button>
         </div>
     </form>
 </div>

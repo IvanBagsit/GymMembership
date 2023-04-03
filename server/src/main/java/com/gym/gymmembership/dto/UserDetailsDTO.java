@@ -25,13 +25,11 @@ public class UserDetailsDTO {
     private AccountType accountType;
     private MembershipType membershipType;
     private Boolean termsAndCondition;
-    private String type;
-    private Integer fee;
-    private String duration;
     private LocalDate expirationDate;
     private LocalDate lastLogIn;
     private LocalDate lastLogOut;
     private Boolean disable;
+    private LocalDate joinDate;
 
     @Nullable
     private Integer age;

@@ -59,12 +59,23 @@ select {
     margin: 10px;
     margin-top: 20px;
     width: 200px;
+    background-color: #00B2FF;
+}
+
+.clearFilterButton{
+    margin: 10px;
+    margin-top: 20px;
+    width: 200px;
+    background-color: #848884;
+}
+
+.searchButton {
+    background-color: #00B2FF;
 }
 
 button {
     height: 30px;
     width: 100px;
-    background-color: #00B2FF;
     border: transparent;
     border-radius: 10px;
     color: white;
@@ -103,4 +114,11 @@ td {
 
 .filterOptionsInputs {
     padding: 10px;
+}
+
+select {
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+    width: 120px;
 }

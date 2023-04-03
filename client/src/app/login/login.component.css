@@ -67,3 +67,8 @@ button {
     font-weight: bold;
     color: #00B2FF;
 }
+
+.forgotPasswordButton {
+    color: #00B2FF;
+    text-decoration: underline;
+}

@@ -3,6 +3,7 @@ package com.gym.gymmembership.service.impl;
 import com.gym.gymmembership.domain.AccountType;
 import com.gym.gymmembership.domain.MembershipType;
 import com.gym.gymmembership.domain.UserDetails;
+import com.gym.gymmembership.dto.SearchDTO;
 import com.gym.gymmembership.dto.UserDetailsDTO;
 import com.gym.gymmembership.repository.AccountTypeRepository;
 import com.gym.gymmembership.repository.MembershipTypeRepository;
@@ -108,8 +109,16 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             user.get().setPassword(userDetailsDTO.getPassword());
             user.get().setFirstName(userDetailsDTO.getFirstName());
             user.get().setLastName(userDetailsDTO.getLastName());
-            user.get().setMembershipType(membershipType.get());
+            user.get().setMembershipType(userDetailsDTO.getMembershipType());
+            user.get().setAccountType(userDetailsDTO.getAccountType());
             user.get().setDisable(userDetailsDTO.getDisable());
+            user.get().setAge(userDetailsDTO.getAge());
+            user.get().setBirthday(userDetailsDTO.getBirthday());
+            user.get().setLastLogIn(userDetailsDTO.getLastLogIn());
+            user.get().setLastLogOut(userDetailsDTO.getLastLogOut());
+            user.get().setExpirationDate(userDetailsDTO.getExpirationDate());
+            user.get().setJoinDate(userDetailsDTO.getJoinDate());
+            user.get().setTermsAndCondition(userDetailsDTO.getTermsAndCondition());
             userDetailsRepository.save(user.get());
             log.info("Successfully updated User: {}", user.get().getUsername());
             return userDetailsDTO;
@@ -117,6 +126,73 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         else {
             log.info("Failed to update user : {}", userDetailsDTO);
             throw new Exception("Failed to update User: " + userDetailsDTO.getUsername()); }
+    }
+
+    @Override
+    public String deleteUser(Long id) throws Exception {
+        Optional<UserDetails> user = userDetailsRepository.findById(id);
+        if(user.isPresent()) {
+            userDetailsRepository.deleteById(id);
+            log.info("Success deletion of user");
+            return "Success deletion of user";
+        } else {
+            log.info("Deletion failed. User is not existing");
+            throw new Exception("Can't find user");
+        }
+    }
+
+    @Override
+    public List<UserDetails> filterUserDetails(SearchDTO searchDTO) throws Exception {
+        Optional<MembershipType> membershipType = membershipTypeRepository.findByType(searchDTO.getMembershipTypes());
+        if(membershipType.isPresent()) {
+            if(searchDTO.getDateFrom() == null && searchDTO.getDateTo() != null) {
+                return userDetailsRepository.filterUserDetailsWithDateTo(
+                        searchDTO.getDateTo(),
+                        membershipType.get().getId(),
+                        searchDTO.getSearchInput()
+                        );
+            } else if (searchDTO.getDateFrom() != null && searchDTO.getDateTo() == null) {
+                return userDetailsRepository.filterUserDetailsWithDateFrom(
+                        searchDTO.getDateFrom(),
+                        membershipType.get().getId(),
+                        searchDTO.getSearchInput()
+                );
+            } else if (searchDTO.getDateFrom() == null && searchDTO.getDateTo() == null){
+                return userDetailsRepository.filterUserDetailsWithoutDate(
+                        membershipType.get().getId(),
+                        searchDTO.getSearchInput()
+                );
+            } else {
+                return userDetailsRepository.filterUserDetailsWithAllParameters(
+                        searchDTO.getDateFrom(),
+                        searchDTO.getDateTo(),
+                        membershipType.get().getId(),
+                        searchDTO.getSearchInput()
+                );
+            }
+        } else {
+            if(searchDTO.getDateFrom() == null && searchDTO.getDateTo() != null) {
+                return userDetailsRepository.filterUserDetailsWithDateToWithoutMembershipType(
+                        searchDTO.getDateTo(),
+                        searchDTO.getSearchInput()
+                );
+            } else if (searchDTO.getDateFrom() != null && searchDTO.getDateTo() == null) {
+                return userDetailsRepository.filterUserDetailsWithDateFromWithoutMembershipType(
+                        searchDTO.getDateFrom(),
+                        searchDTO.getSearchInput()
+                );
+            } else if (searchDTO.getDateFrom() == null && searchDTO.getDateTo() == null){
+                return userDetailsRepository.filterUserDetailsWithoutDateAndMembershipType(
+                        searchDTO.getSearchInput()
+                );
+            } else {
+                return userDetailsRepository.filterUserDetailsWithAllParametersExceptMembershipType(
+                        searchDTO.getDateFrom(),
+                        searchDTO.getDateTo(),
+                        searchDTO.getSearchInput()
+                );
+            }
+        }
     }
 
 }

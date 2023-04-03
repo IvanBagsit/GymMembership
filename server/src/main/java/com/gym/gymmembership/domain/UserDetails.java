@@ -65,12 +65,12 @@ public class UserDetails {
     @Column(name = "DISABLE")
     private Boolean disable;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "MEMBERSHIPTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private MembershipType membershipType;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
     @JoinColumn(name = "ACCOUNTTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private AccountType accountType;
