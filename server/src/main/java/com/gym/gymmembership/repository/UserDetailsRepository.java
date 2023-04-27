@@ -12,7 +12,6 @@ import java.util.Optional;
 
 @Repository
 public interface UserDetailsRepository extends JpaRepository<UserDetails,Long> {
-    Optional<UserDetails> findByUsername(String username);
 
     @Query(value = "SELECT * FROM GYMMEMBERSHIP.USER\n" +
             "WHERE EXPIRATION_DATE >= ?1\n" +

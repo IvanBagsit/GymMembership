@@ -22,12 +22,6 @@ public class UserDetails {
     @Column(name = "ID")
     private Long id;
 
-    @Column(name = "USERNAME", nullable = false, unique = true)
-    private String username;
-
-    @Column(name = "PASSWORD", nullable = false)
-    private String password;
-
     @Column(name = "FIRST_NAME", nullable = false)
     private String firstName;
 
@@ -41,14 +35,6 @@ public class UserDetails {
     @Nullable
     @Column(name = "BIRTHDAY")
     private LocalDate birthday;
-
-    @Nullable
-    @Column(name = "LAST_LOGIN")
-    private LocalDate lastLogIn;
-
-    @Nullable
-    @Column(name = "LAST_LOGOUT")
-    private LocalDate lastLogOut;
 
     @Nullable
     @Column(name = "EXPIRATION_DATE")
@@ -69,10 +55,5 @@ public class UserDetails {
     @JoinColumn(name = "MEMBERSHIPTYPE_ID_FK", referencedColumnName = "ID")
     @OnDelete(action = OnDeleteAction.NO_ACTION)
     private MembershipType membershipType;
-
-    @ManyToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name = "ACCOUNTTYPE_ID_FK", referencedColumnName = "ID")
-    @OnDelete(action = OnDeleteAction.NO_ACTION)
-    private AccountType accountType;
 
 }

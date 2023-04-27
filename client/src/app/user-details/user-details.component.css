@@ -1,6 +1,7 @@
 .filterDiv {
     margin: 20px;
     margin-top: 40px;
+    min-width: 700px;
 }
 
 .filterTitle {
@@ -21,10 +22,12 @@
 
 .searchDiv > * {
     margin: 5px;
+
 }
 
 .searchDiv {
     padding: 20px;
+    min-width: 700px;
 }
 
 .filterOptionsInputsDiv {
@@ -85,6 +88,7 @@ button {
 
 .tableDiv {
     padding: 20px;
+    min-width: 700px;
 }
 
 table {

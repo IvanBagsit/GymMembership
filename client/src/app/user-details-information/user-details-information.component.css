@@ -6,10 +6,11 @@ h1 {
 .userDetailsMainDiv {
     display: flex;
     justify-content: center;
+    min-width: 700px;
 }
 
 form {
-    margin-top: 40px;
+    margin-top: 70px;
     border: solid grey;
     border-radius: 10px;
     border-width: 1px;

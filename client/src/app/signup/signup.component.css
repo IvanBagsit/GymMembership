@@ -1,12 +1,3 @@
-.signupBackground {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    vertical-align: middle;
-    margin: 0px;
-    height: calc(100vh - 90px);
-}
-
 input[type=text], input[type=password], button, .signupLogin {
     display: block;
 }
@@ -19,23 +10,20 @@ input[type=text], input[type=password], button, .signupLogin {
 
 .signupForm {
     position: relative;
-    border: solid grey;
-    border-radius: 10px;
-    border-width: 1px;
     display: flex;
     justify-content: center;
     vertical-align: middle;
     align-items: center;
-    height: 450px;
-    width: 300px;
+    margin-top: 50px;
 }
 
 h2 {
     text-align: center;
+    margin-bottom: 40px;
 }
 
 input, button, .signupLogin {
-    margin-top: 10px;
+    margin-top: 15px;
     margin-bottom: 10px
 }
 

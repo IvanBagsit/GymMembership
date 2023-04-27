@@ -3,7 +3,6 @@ import { GymApiService } from '../gym-api.service';
 import { Signup } from '../model/signup';
 import { UserDetails } from '../model/user-details';
 import { IMembershipType, MembershipType } from '../model/membership-type';
-import { AccountType, IAccountType } from '../model/account-type';
 
 @Component({
   selector: 'app-signup',
@@ -17,8 +16,8 @@ export class SignupComponent implements OnInit {
   public membershipType: IMembershipType[] = [];
   public errorMsg: string = "";
 
-  signupModel: UserDetails = new UserDetails(0,"",undefined,"","",0,undefined,undefined,undefined,
-  new Date,new Date,false,false, undefined, new AccountType(2,"user")
+  signupModel: UserDetails = new UserDetails(0,"","",0,undefined,undefined,undefined,
+  false,false, undefined
   );
 
   constructor(protected gymApiService: GymApiService) { }
