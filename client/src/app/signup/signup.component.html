@@ -10,6 +10,10 @@
           <input type="text" [style.border-color]="lastName.touched && lastName.invalid ? 'red' : 'black'" required placeholder="Last Name" #lastName="ngModel" name="lastName" class="form-control" [(ngModel)]="signupModel.lastName">
         </div>
         <div class="form-group">
+          <label class="signupMembershipLabel">Birthday:</label>
+          <input type="date" [style.border-color]="birthday.touched && birthday.invalid ? 'red' : 'black'" required #birthday="ngModel" name="birthday" class="form-control" [(ngModel)]="signupModel.birthday">
+        </div>
+        <div class="form-group">
           <label class="signupMembershipLabel">Membership:</label>
           <select required #membershipTyped="ngModel" name="membershipType" class="custom-select" [(ngModel)]="signupModel.membershipType">
             <option 

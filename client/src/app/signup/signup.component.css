@@ -79,3 +79,10 @@ select {
     border-radius: 7px;
     border-width: 1px;
 }
+
+input[type=date] {
+    height: 30px;
+    width: 71%;
+    border-radius: 7px;
+    border-width: 1px;
+}

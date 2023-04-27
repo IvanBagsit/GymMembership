@@ -50,14 +50,10 @@ export class UserDetailsInformationComponent implements OnInit {
 
   userDetailsInformationForm = this.formBuilder.group({
     id: [],
-    username: ['',[Validators.required,Validators.minLength(1)]],
-    password: ['',Validators.required],
     firstName: [],
     lastName: [],
     birthday: [],
     age: [],
-    lastLogIn: [],
-    lastLogOut: [],
     expirationDate: [],
     joinDate: [],
     termsAndCondition: [],
@@ -67,10 +63,6 @@ export class UserDetailsInformationComponent implements OnInit {
       type: [],
       fee: [],
       duration: []
-    }),
-    accountType: this.formBuilder.group({
-      id: [],
-      role: []
     })
   })
 
@@ -84,14 +76,10 @@ export class UserDetailsInformationComponent implements OnInit {
   loadUserData(): void{
     this.userDetailsInformationForm.patchValue({
       id: this.userId,
-      username: this.userDetails.username,
-      password: this.userDetails.password,
       firstName: this.userDetails.firstName,
       lastName: this.userDetails.lastName,
       birthday: this.userDetails.birthday,
       age: this.userDetails.age,
-      lastLogIn: this.userDetails.lastLogIn,
-      lastLogOut: this.userDetails.lastLogOut,
       expirationDate: this.userDetails.expirationDate,
       joinDate: this.userDetails.joinDate,
       termsAndCondition: this.userDetails.termsAndCondition,
@@ -101,10 +89,6 @@ export class UserDetailsInformationComponent implements OnInit {
         type: this.userDetails.membershipType.type,
         fee: this.userDetails.membershipType.fee,
         duration: this.userDetails.membershipType.duration
-      },
-      accountType:{
-        id: this.userDetails.accountType.id,
-        role: this.userDetails.accountType.role
       }
     });
   }

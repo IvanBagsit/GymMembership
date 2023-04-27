@@ -12,7 +12,9 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.util.List;
 import java.util.Optional;
 
@@ -58,7 +60,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
             userDetails.setMembershipType(membershipType.get());
             userDetails.setDisable(false);
             userDetails.setBirthday(userDetailsDTO.getBirthday());
-            userDetails.setAge(userDetailsDTO.getAge());
+            userDetails.setAge(getAge(userDetailsDTO.getBirthday(), LocalDate.now()));
             userDetails.setExpirationDate(
                     CommonUtil.currentDate().plusDays(Long.valueOf(userDetailsDTO.getMembershipType().getDuration()))
             );
@@ -169,6 +171,14 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                         searchDTO.getSearchInput()
                 );
             }
+        }
+    }
+
+    public int getAge(LocalDate birthday, LocalDate currentDate){
+        if ((birthday != null) && (currentDate != null)) {
+            return Period.between(birthday, currentDate).getYears();
+        } else {
+            return 0;
         }
     }
 
