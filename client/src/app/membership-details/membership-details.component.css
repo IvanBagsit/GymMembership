@@ -3,12 +3,13 @@ h1 {
 }
 
 .membershipDetailsTable {
-    position:relative;
+    position: relative;
     display: flex;
     justify-content: center;
     vertical-align: middle;
     align-items: center;
     padding-top: 20px;
+    min-width: 700px;
 }
 
 table, th, td {

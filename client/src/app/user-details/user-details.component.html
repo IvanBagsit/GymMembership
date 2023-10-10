@@ -1,37 +1,44 @@
 <!-- <h1>List of Members</h1> -->
-<div class="filterDiv">
-    <div class="filterTitle" (click)="filterClicked()">Filter Members</div>
-    <div class="filterOptions" *ngIf="isClicked">
-        <div class="filterOptionsDiv">
-            <div class="filterOptionsTitle">Date Joined</div>
-            <div class="filterOptionsInputs">
-                <div class="filterOptionsInputsDiv">
-                    <label for="dateFrom" class="filterOptionsInputsLabel">From:</label>
-                    <input type="date" id="dateFrom" name="dateFrom">
-                </div>
-                <div class="filterOptionsInputsDiv">
-                    <label for="dateTo" class="filterOptionsInputsLabel">To:</label>
-                    <input type="date" id="dateTo" name="dateTo">
+<form [formGroup]="userDetailsForm">
+    <div class="filterDiv">
+        <div class="filterTitle" (click)="filterClicked()">Filter Members</div>
+        <div class="filterOptions" *ngIf="isClicked">
+            <div class="filterOptionsDiv">
+                <div class="filterOptionsTitle">Expiration Date</div>
+                <div class="filterOptionsInputs">
+                    <div class="filterOptionsInputsDiv">
+                        <label for="dateFrom" class="filterOptionsInputsLabel">From:</label>
+                        <input type="date" id="dateFrom" name="dateFrom" class="form-control" formControlName="dateFrom">
+                    </div>
+                    <div class="filterOptionsInputsDiv">
+                        <label for="dateTo" class="filterOptionsInputsLabel">To:</label>
+                        <input type="date" id="dateTo" name="dateTo" class="form-control" formControlName="dateTo">
+                    </div>
                 </div>
             </div>
+            <div class="filterOptionsDiv">
+                <span class="filterOptionsTitle">Membership Type</span>
+                <span class="filterOptionsInputs">
+                    <label for="membershipTypes"></label>
+                    <select  id="membershipTypes" name="membershipTypes" class="form-control" formControlName="membershipTypes">
+                        <option selected value="default">Please choose</option>
+                        <option *ngFor="let membershipTypes of membershipType">{{membershipTypes.type}}</option>
+                    </select>
+                </span>
+            </div>
+            <button (click)="onSearch()" class="applyButton">Apply</button>
+            <button class="clearFilterButton" (click)="onClearFilter()">Clear Filter</button>
         </div>
-        <div class="filterOptionsDiv">
-            <span class="filterOptionsTitle">Membership Type</span>
-            <span class="filterOptionsInputs">
-                <label for="membershipType"></label>
-                <select  id="membershipTypes" name="membershipTypes">
-                    <option *ngFor="let membershipTypes of membershipType">{{membershipTypes.type}}</option>
-                </select>
-            </span>
-        </div>
-        <button class="applyButton">Apply</button>
     </div>
-</div>
-<div class="searchDiv">
-    <label for="searchInput">Search:</label>
-    <input type="search" id="searchInput" name="searchInput">
-    <button>Search</button>
-</div>
+    <div class="searchDiv">
+        <label>Search:</label>
+        <input type="search" class="form-control" formControlName="searchInput">
+        <button (click)="onSearch()" class="searchButton">Search</button>
+    </div>
+    <!-- <div>
+        {{userDetailsForm.value | json}}
+    </div> -->
+</form>
 <div class="tableDiv">
     <table>
         <tr>

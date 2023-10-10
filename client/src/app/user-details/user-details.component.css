@@ -1,6 +1,7 @@
 .filterDiv {
     margin: 20px;
     margin-top: 40px;
+    min-width: 700px;
 }
 
 .filterTitle {
@@ -21,10 +22,12 @@
 
 .searchDiv > * {
     margin: 5px;
+
 }
 
 .searchDiv {
     padding: 20px;
+    min-width: 700px;
 }
 
 .filterOptionsInputsDiv {
@@ -59,12 +62,23 @@ select {
     margin: 10px;
     margin-top: 20px;
     width: 200px;
+    background-color: #00B2FF;
+}
+
+.clearFilterButton{
+    margin: 10px;
+    margin-top: 20px;
+    width: 200px;
+    background-color: #848884;
+}
+
+.searchButton {
+    background-color: #00B2FF;
 }
 
 button {
     height: 30px;
     width: 100px;
-    background-color: #00B2FF;
     border: transparent;
     border-radius: 10px;
     color: white;
@@ -74,6 +88,7 @@ button {
 
 .tableDiv {
     padding: 20px;
+    min-width: 700px;
 }
 
 table {
@@ -103,4 +118,11 @@ td {
 
 .filterOptionsInputs {
     padding: 10px;
+}
+
+select {
+    height: 30px;
+    border-radius: 7px;
+    border-width: 1px;
+    width: 120px;
 }

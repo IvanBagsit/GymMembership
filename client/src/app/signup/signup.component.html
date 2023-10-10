@@ -1,59 +1,55 @@
 <!-- Template Driven Form -->
-<div class="signupBackground">
-    <div class="signupForm">
-        <form class="signupInput" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.form.invalid)" novalidate>
-          <div ngModelGroup="signupForm">
-            <h2>{{title.toUpperCase()}}</h2>
-            <div class="form-group">
-              <input type="text" [style.border-color]="username.touched && username.invalid ? 'red' : 'black'" required placeholder="Username" #username="ngModel" name="username" class="form-control" [(ngModel)]="signupModel.username">
-            </div>
-            <div class="form-group">
-              <input type="password" [style.border-color]="password.touched && password.invalid ? 'red' : 'black'" required placeholder="Password" #password="ngModel" name="password" class="form-control" [(ngModel)]="signupModel.password">
-            </div>
-            <div class="form-group">
-              <input type="text" [style.border-color]="firstName.touched && firstName.invalid ? 'red' : 'black'" required placeholder="First Name" #firstName="ngModel" name="firstName" class="form-control" [(ngModel)]="signupModel.firstName">
-            </div>
-            <div class="form-group">
-              <input type="text" [style.border-color]="lastName.touched && lastName.invalid ? 'red' : 'black'" required placeholder="Last Name" #lastName="ngModel" name="lastName" class="form-control" [(ngModel)]="signupModel.lastName">
-            </div>
-            <div class="form-group">
-              <label class="signupMembershipLabel">Membership:</label>
-              <select required #membershipTyped="ngModel" name="membershipType" class="custom-select" [(ngModel)]="signupModel.membershipType">
-                <option 
-                *ngFor="let membershipTypes of membershipType" 
-                [ngValue]="membershipTypes">
-                {{membershipTypes.fee | currency: 'PHP'}} - {{membershipTypes.duration}} day/s
-                </option>
-              </select>
-              <div>
-                <small *ngIf="membershipTyped.touched && membershipTyped.invalid">Required membership</small>
-              </div>
-            </div>
-            <input type="checkbox" [style.border-color]="termsAndCondition.touched && termsAndCondition.invalid ? 'red' : 'black'" required #termsAndCondition="ngModel" id="termsAndCondition" name="termsAndCondition" class="form-check-input" [(ngModel)]="signupModel.termsAndCondition">
-            <label for="termsAndCondition">I accept the
-                <span routerLink="/terms-and-condition" class="termsAndCondition">
-                    Terms and Condition
-                </span>
-            </label>
-            <div>
-              <small *ngIf="termsAndCondition.touched && termsAndCondition.invalid">Required terms and condition</small>
-            </div>
-            <div class="submitButton">
-                <button type="submit" >Sign up</button>
-            </div>
-            <div>
-              <small *ngIf="formValidation">Required field inputs</small>
-            </div>
-            <div class="alert alert-danger" *ngIf="errorMsg">
-              <small>
-                {{errorMsg}}
-              </small>
-            </div>
-            <div class="signupLogin">
-                Have an account?
-                <span routerLink="/login" class="signupLoginButton">Login</span>
-            </div>
+<div class="signupForm">
+    <form class="signupInput" #signupForm="ngForm" (ngSubmit)="onSubmit(signupForm.form.invalid)" novalidate>
+      <div ngModelGroup="signupForm">
+        <h2>{{title.toUpperCase()}}</h2>
+        <div class="form-group">
+          <input type="text" [style.border-color]="firstName.touched && firstName.invalid ? 'red' : 'black'" required placeholder="First Name" #firstName="ngModel" name="firstName" class="form-control" [(ngModel)]="signupModel.firstName">
+        </div>
+        <div class="form-group">
+          <input type="text" [style.border-color]="lastName.touched && lastName.invalid ? 'red' : 'black'" required placeholder="Last Name" #lastName="ngModel" name="lastName" class="form-control" [(ngModel)]="signupModel.lastName">
+        </div>
+        <div class="form-group">
+          <label class="signupMembershipLabel">Birthday:</label>
+          <input type="date" [style.border-color]="birthday.touched && birthday.invalid ? 'red' : 'black'" required #birthday="ngModel" name="birthday" class="form-control" [(ngModel)]="signupModel.birthday">
+        </div>
+        <div class="form-group">
+          <label class="signupMembershipLabel">Membership:</label>
+          <select required #membershipTyped="ngModel" name="membershipType" class="custom-select" [(ngModel)]="signupModel.membershipType">
+            <option 
+            *ngFor="let membershipTypes of membershipType" 
+            [ngValue]="membershipTypes">
+            {{membershipTypes.fee | currency: 'PHP'}} - {{membershipTypes.duration}} day/s
+            </option>
+          </select>
+          <div>
+            <small *ngIf="membershipTyped.touched && membershipTyped.invalid">Required membership</small>
           </div>
-        </form>
-    </div>
+        </div>
+        <input type="checkbox" [style.border-color]="termsAndCondition.touched && termsAndCondition.invalid ? 'red' : 'black'" required #termsAndCondition="ngModel" id="termsAndCondition" name="termsAndCondition" class="form-check-input" [(ngModel)]="signupModel.termsAndCondition">
+        <label for="termsAndCondition">I accept the
+            <span routerLink="/terms-and-condition" class="termsAndCondition">
+                Terms and Condition
+            </span>
+        </label>
+        <div>
+          <small *ngIf="termsAndCondition.touched && termsAndCondition.invalid">Required terms and condition</small>
+        </div>
+        <div class="submitButton">
+            <button type="submit" >Sign up</button>
+        </div>
+        <div>
+          <small *ngIf="formValidation">Required field inputs</small>
+        </div>
+        <div class="alert alert-danger" *ngIf="errorMsg">
+          <small>
+            {{errorMsg}}
+          </small>
+        </div>
+        <div class="signupLogin">
+            Have an account?
+            <span routerLink="/login" class="signupLoginButton">Login</span>
+        </div>
+      </div>
+    </form>
 </div>

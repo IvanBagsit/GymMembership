@@ -11,6 +11,7 @@ import java.util.Optional;
 public interface MembershipTypeRepository extends JpaRepository<MembershipType, Long> {
     Optional<MembershipType> findByTypeAndDuration(String type, String duration);
     Optional<MembershipType> findByTypeAndFeeAndDuration(String type, Integer fee, String duration);
+    Optional<MembershipType> findByType(String type);
 
     @Transactional(readOnly = false)
     void deleteByType(String type);

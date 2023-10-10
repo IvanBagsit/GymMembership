@@ -7,6 +7,7 @@ import { IUserDetails, UserDetails } from './model/user-details';
 import { Signup } from './model/signup';
 import { catchError } from 'rxjs';
 import { throwError } from 'rxjs';
+import { ISearch } from './model/search';
 
 @Injectable({
   providedIn: 'root'
@@ -41,12 +42,30 @@ export class GymApiService {
     return this.http.get<string>(this.LOCAL_API_PATH + '/config/retrieve/' + name, httpOptions);
   }
 
-  signupNewMember(userDetails: UserDetails): Observable<UserDetails>{
-    return this.http.post<UserDetails>(this.LOCAL_API_PATH + '/users/create', userDetails)
-    .pipe(catchError(this.errorHandler))
+  retrieveFilteredUserList(search: ISearch): Observable<IUserDetails[]> {
+    return this.http.post<IUserDetails[]>(this.LOCAL_API_PATH + '/users/details/search', search);
   }
 
-  errorHandler(error:HttpErrorResponse){
+  signupNewMember(userDetails: UserDetails): Observable<UserDetails>{
+    return this.http.post<UserDetails>(this.LOCAL_API_PATH + '/users/create', userDetails)
+    .pipe(catchError(this.errorHandler));
+  }
+
+  updateMemberDetails(userDetails: UserDetails): Observable<UserDetails>{
+    return this.http.put<UserDetails>(this.LOCAL_API_PATH + '/users/update', userDetails);
+  }
+
+  deleteMember(id: number): Observable<string>{
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Accept': 'text/plain, */*'
+      }),
+      responseType: 'text' as 'json' // We accept plain text as response
+    };
+    return this.http.delete<string>(this.LOCAL_API_PATH + '/users/delete/' + id, httpOptions);
+  }
+
+  errorHandler(error: HttpErrorResponse){
     return throwError(error);
   }
 
