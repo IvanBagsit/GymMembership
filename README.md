@@ -4,10 +4,11 @@ Thanks for checking out my side project regarding Gym Membership web application
 
 ## Information
 
-Framework used:
+Framework/Tools used:
 
 -   Angular
 -   Springboot
+-   MySQL
 
 Programming Language used:
 
@@ -15,12 +16,13 @@ Programming Language used:
 -   HTML
 -   CSS
 -   Java
+-   SQL
 
 ## Steps to run the program
 
 1. git clone https://github.com/IvanBagsit/GymMembership
 2. open server folder (Back End) in IntelliJ
-3. enter below vm options in run config
+3. enter vm options in run config:
    -DDB_USER=root
    -DDB_PASS=Pandesal123
    -DDB_HOST=localhost
