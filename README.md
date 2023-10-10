@@ -4,10 +4,11 @@ Thanks for checking out my side project regarding Gym Membership web application
 
 ## Information
 
-Framework used:
+Framework/Tools used:
 
 -   Angular
 -   Springboot
+-   MySQL
 
 Programming Language used:
 
@@ -15,6 +16,7 @@ Programming Language used:
 -   HTML
 -   CSS
 -   Java
+-   SQL
 
 ## Steps to run the program
 
