@@ -33,7 +33,6 @@ CREATE TABLE `utility_configuration` (
   PRIMARY KEY (`id`)
 );
 
-SELECT * FROM gymmembership.membership_type;
 INSERT INTO gymmembership.membership_type(duration, fee, type) 
 VALUES (1, 50, 'Daily');
 INSERT INTO gymmembership.membership_type(duration, fee, type) 
@@ -42,7 +41,7 @@ INSERT INTO gymmembership.membership_type(duration, fee, type)
 VALUES (365, 5000, 'Yearly');
 
 INSERT INTO gymmembership.user(age, birthday, disable, expiration_date, first_name, join_date, last_name, terms_and_condition, membershiptype_id_fk)
-VALUES('25', '1997-09-23', '0', '2024-04-26', 'test103', '2023-04-27', 'test103', '1', '9');
+VALUES('25', '1997-09-23', false, '2024-04-26', 'test103', '2023-04-27', 'test103', true, '1');
 
 INSERT INTO gymmembership.utility_configuration(config, module, name)
 VALUES('fitness center', 'frontend','title');
