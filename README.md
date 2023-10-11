@@ -20,9 +20,11 @@ Programming Language used:
 
 ## Steps to run the program
 
-1. git clone https://github.com/IvanBagsit/GymMembership
-2. open server folder (Back End) in IntelliJ
-3. enter vm options in run config:
+1. setup MySQL localhost
+2. run script 'create_db.sql'
+3. git clone https://github.com/IvanBagsit/GymMembership
+4. open server folder (Back End) in IntelliJ
+5. enter vm options in run config:
    -DDB_USER=root
    -DDB_PASS=Pandesal123
    -DDB_HOST=localhost
@@ -30,8 +32,8 @@ Programming Language used:
    -DSPRING_PROFILES_ACTIVE=local
    -DSERVER_PORT=8080
    -DSERVER_CONTEXT_PATH=/gymmembership
-4. run
-5. open client folder (Front End) in VS Code
-6. npm i
-7. npm start
-8. go to http://localhost:4200/home
+6. run
+7. open client folder (Front End) in VS Code
+8. npm i
+9. npm start
+10. go to http://localhost:4200/home
