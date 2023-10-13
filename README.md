@@ -25,8 +25,8 @@ Programming Language used:
 3. git clone https://github.com/IvanBagsit/GymMembership
 4. open server folder (Back End) in IntelliJ
 5. enter vm options in run config:
-   -DDB_USER=root
-   -DDB_PASS=Pandesal123
+   -DDB_USER={user}
+   -DDB_PASS={password}
    -DDB_HOST=localhost
    -DDB_NAME=gymmembership
    -DSPRING_PROFILES_ACTIVE=local
