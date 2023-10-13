@@ -24,7 +24,7 @@ Programming Language used:
 2. run script 'create_db.sql'
 3. git clone https://github.com/IvanBagsit/GymMembership
 4. open server folder (Back End) in IntelliJ
-5. enter vm options in run config:
+5. enter vm options in run config (update user and password):
    -DDB_USER={user}
    -DDB_PASS={password}
    -DDB_HOST=localhost
