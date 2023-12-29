@@ -4,6 +4,8 @@ Thanks for checking out my side project regarding Gym Membership web application
 
 ## Information
 
+Node Version: v14.21.3
+
 Framework/Tools used:
 
 -   Angular
