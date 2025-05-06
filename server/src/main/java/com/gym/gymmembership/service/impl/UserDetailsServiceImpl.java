@@ -34,7 +34,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     @Override
     public UserDetails fetchUserDetail(Long id) throws Exception {
         Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
-        if(Optional.ofNullable(userDetails).isPresent()){
+        if(userDetails.isPresent()){
             log.info("User Details found : {}", userDetails);
             return userDetails.get();
         } else {
@@ -53,7 +53,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if (Optional.ofNullable(membershipType).isPresent()) {
+        if (membershipType.isPresent()) {
             log.info("found membership type: {}",membershipType);
             userDetails.setFirstName(userDetailsDTO.getFirstName());
             userDetails.setLastName(userDetailsDTO.getLastName());
@@ -87,7 +87,7 @@ public class UserDetailsServiceImpl implements UserDetailsService {
                 userDetailsDTO.getMembershipType().getDuration()
         );
 
-        if(Optional.ofNullable(user).isPresent() && Optional.ofNullable(membershipType).isPresent()) {
+        if(user.isPresent() && membershipType.isPresent()) {
             log.info("found user to be updated: {} - {}", user, membershipType);
             user.get().setFirstName(userDetailsDTO.getFirstName());
             user.get().setLastName(userDetailsDTO.getLastName());
